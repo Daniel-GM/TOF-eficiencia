@@ -1,0 +1,13 @@
++digitar o UID
+
++selecionar o elemento
+
++selecionar o personagem
+
++calculadora de itens upados
+
++preview de itens crit
+
++calculadora de item bélico
+
++criação de login

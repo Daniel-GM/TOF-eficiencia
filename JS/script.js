@@ -10,7 +10,7 @@ function testarApi(){
         /**
          * response intro
          */
-        $('.nickname').html("Nick: " + response['results'][0]['nickname'])
+        $('.nickname').html("Nickname: " + response['results'][0]['nickname'])
         $('.guildName').html("Guild: " + response['results'][0]['guildName'])
         $('.server').html("Server: " + response['results'][0]['server'])
         $('.cs').html("CS: " + response['results'][0]['cs'])
@@ -19,17 +19,28 @@ function testarApi(){
         /**
          * response weapon
         */
-        $('.weapon-name-0').html(response['results'][0]['weapons'][0]['id'])
+        function adicionarConstelacao(response, div){
+          for(var i=0; i<6; i++) {
+            if(response >= (i+1))
+              $(".weapon-star-"+div+" .star"+(i+1)).attr("src", "/img/stars/trueStar.webp")
+            else
+              $(".weapon-star-"+div+" .star"+(i+1)).attr("src", "/img/stars/falseStar.webp")
+          }
+        }
+        let weapon = response['results'][0]['weapons'][0]['id']
+        $('.weapon-name-0').attr('src', "https://www.incin.net/scryglass/weapon/y"+weapon+".webp")
         $('.weapon-lv-0').html("Level: " + response['results'][0]['weapons'][0]['level'])
-        $('.weapon-star-0').html("Estrelas: " + response['results'][0]['weapons'][0]['advancement'])
+        adicionarConstelacao(response['results'][0]['weapons'][0]['advancement'], 0)
 
-        $('.weapon-name-1').html(response['results'][0]['weapons'][1]['id'])
+        weapon = response['results'][0]['weapons'][1]['id']
+        $('.weapon-name-1').attr('src', "https://www.incin.net/scryglass/weapon/y"+weapon+".webp")
         $('.weapon-lv-1').html("Level: " + response['results'][0]['weapons'][1]['level'])
-        $('.weapon-star-1').html("Estrelas: " + response['results'][0]['weapons'][1]['advancement'])
+        adicionarConstelacao(response['results'][0]['weapons'][1]['advancement'], 1)
 
-        $('.weapon-name-2').html(response['results'][0]['weapons'][2]['id'])
+        weapon = response['results'][0]['weapons'][2]['id']
+        $('.weapon-name-2').attr('src', "https://www.incin.net/scryglass/weapon/y"+weapon+".webp")
         $('.weapon-lv-2').html("Level: " + response['results'][0]['weapons'][2]['level'])
-        $('.weapon-star-2').html("Estrelas: " + response['results'][0]['weapons'][2]['advancement'])
+        adicionarConstelacao(response['results'][0]['weapons'][2]['advancement'], 2)
 
         /**
          * response equips
@@ -63,14 +74,21 @@ function testarApi(){
         function calculoEficiencia(){
           let listaItens = ["helmet", "shawl", "armband", "belt", "cloth", "pants"]
           let listaClasse = [".barra-elmo", ".barra-ombreira", ".barra-bracadeira", ".barra-cinto", ".barra-peitoral", ".barra-calca", ]
-          let atk, atkE, soma
+          let atk, atkE, soma, somaTotal=0
           const maxAtk = 1681
           for(let i=0; i<6; i++){
             atk = zeraValor(parseInt(response['results'][0]['equipments'][listaItens[i]]['stats']['CommonAtk']))
             atkE = zeraValor(parseInt(response['results'][0]['equipments'][listaItens[i]]['stats']['FireAtk']))
             soma = (((atk + atkE)*100)/maxAtk)
+            somaTotal = soma + somaTotal
+            
             $(listaClasse[i] + " .eficiencia").css('width', soma.toFixed(2)+'%')
             $(listaClasse[i] + " .porcentagem").html(soma.toFixed(2)+'%')
+
+            if(i == 5){
+              $(".barra-total .eficiencia").css('width', (somaTotal/6).toFixed(2)+'%')
+              $(".status-full .porcentagem").html((somaTotal/6).toFixed(2)+'%')
+            }
           }
         }
         calculoEficiencia()

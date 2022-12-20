@@ -41,11 +41,16 @@ section.weapons{
 
 div.weapons{
   margin-top: 20px;
-  margin-bottom: 20px;
+  
   padding-left: 20%;
   padding-right: 20%;
   display: flex;
   justify-content: space-around;
+}
+
+.weapon-lv-0, .weapon-lv-1, .weapon-lv-2{
+  position: relative;
+  top: 25px;
 }
 
 .weapon{
@@ -54,7 +59,32 @@ div.weapons{
   align-items: center;
 }
 
+.weapon-star-0, .weapon-star-1, .weapon-star-2{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 35px;
+}
+
+.weapon-star-0 img, .weapon-star-1 img, .weapon-star-2 img{
+  width: 8%;
+}
+
 /*dados equipamentos*/
+.equips-full .status {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.status-full{
+  background-color: #161616;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+}
+
 .equips{
   background-color: #1b1b1b;
   padding: 1%;
@@ -72,9 +102,9 @@ div.weapons{
   border-radius: 20px;
   display: flex;
   align-items: center;
-  width: 49%;
-  margin-bottom: 0.25rem;
-  margin-right: 0.25rem;
+  width: 48%;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .equipamento2{
@@ -116,9 +146,13 @@ div.weapons{
   justify-content: center;
 }
 
+div.barra-total{
+  background-color: #161616;
+}
+
 .barra {
   height: 25px;
-  background-color: #ff756e;
+  background-color: #161616;
   width: 100%;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -137,5 +171,6 @@ div.weapons{
   top: -23px;
   display: flex;
   justify-content: center;
-  color: #000;  
+  color: #fff;  
+  text-shadow: #000 1px 0 10px;
 }
