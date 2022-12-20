@@ -1,0 +1,141 @@
+/* body */
+html, body{
+  padding: 0px;
+  margin: 0px;
+  background-color: #1b1b1b;
+  font-family: Noto Sans KR,sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.wrap{
+  font-size: 1.1em;
+  color: #fff;
+}
+
+/*dados da conta*/
+section.conta-info {
+  padding: 0% 15%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.campo{
+  margin: 10px;
+}
+
+.conta1, .conta2{
+  display: flex;
+  flex-direction: column;
+}
+
+/*dados das armas*/
+section.weapons{
+  border-top: 2px solid #fff;
+
+}
+
+div.weapons{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 20%;
+  padding-right: 20%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.weapon{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*dados equipamentos*/
+.equips{
+  background-color: #1b1b1b;
+  padding: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2%;
+  border-radius: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.equipamento, .equipamento2{
+  background-color: #00000030;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  width: 49%;
+  margin-bottom: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.equipamento2{
+  display: flex;
+  flex-direction: column;
+  margin-right: 0rem;
+  margin-left: 0.25rem;
+}
+
+.equipamento{
+  display: flex;
+  flex-direction: column;
+}
+
+.elmo, .ombreira, .bracadeira, .cinto, .peitoral, .calca{
+  display: flex;
+  align-items: center;
+}
+
+.ataque, .e-ataque {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.equip-img{
+  width: 40%;
+}
+
+.icon-ataque, .icon-e-ataque{
+  width: 1em;
+}
+
+.status {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.barra {
+  height: 25px;
+  background-color: #ff756e;
+  width: 100%;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.eficiencia{
+  background-color: #63c384;
+  height: 100%;
+  width: 0%;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.porcentagem{
+  position: relative;
+  top: -23px;
+  display: flex;
+  justify-content: center;
+  color: #000;  
+}
