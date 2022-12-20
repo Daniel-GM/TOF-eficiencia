@@ -2,7 +2,7 @@ testarApi()
 
 function testarApi(){
   $.ajax({
-    url: "https://tofapi.incin.net/scryglass/player/uid?uid=1500810700",
+    url: "https://tofapi.incin.net/scryglass/player/uid?uid=150081116",
     method:'get',
     crossDomain: true,
     success: function (response) {
