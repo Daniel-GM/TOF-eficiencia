@@ -38,9 +38,9 @@ function runApi(id, elemento){
         function adicionarConstelacao(response, div){
           for(var i=0; i<6; i++) {
             if(response >= (i+1))
-              $(".weapon-star-"+div+" .star"+(i+1)).attr("src", "/img/stars/trueStar.webp")
+              $(".weapon-star-"+div+" .star"+(i+1)).attr("src", "img/stars/trueStar.webp")
             else
-              $(".weapon-star-"+div+" .star"+(i+1)).attr("src", "/img/stars/falseStar.webp")
+              $(".weapon-star-"+div+" .star"+(i+1)).attr("src", "img/stars/falseStar.webp")
           }
         }
         let weapon = response['results'][0]['weapons'][0]['id']
