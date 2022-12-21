@@ -5,6 +5,7 @@ function buscaUID(){
     alert("UID invalida")
   } else {
     $(".loading-uid").css("display", "block");
+    $(".icon-e-ataque").attr('src', `img/status/${elemento}.webp`)
     runApi(id, elemento)
   }
 }
@@ -14,7 +15,6 @@ function logout(){
 }
 
 function runApi(id, elemento){
-
   $.ajax({
     url: `https://tofapi.incin.net/scryglass/player/uid?uid=${id}`,
     method:'get',
@@ -70,18 +70,20 @@ function runApi(id, elemento){
 
         function tentaConjunto(response, slot){
           try {
-            debugger
             let tentativa1 = [response[slot], slot]
             let tentativa2 = [response[slot+"2"], slot+"2"]
             let tentativa3 = [response[slot+"3"], slot+"3"]
+            let tentativa4 = [response[slot+"4"], slot+"4"]
             if(tentativa1[0] != undefined)
               return tentativa1
             else if(tentativa2[0] != undefined)
               return tentativa2
             else if(tentativa3[0] != undefined)
               return tentativa3
+            else if(tentativa4[0] != undefined)
+              return tentativa4
           } catch (error) {
-            
+            alert(error.message)
           }
             
         }
@@ -101,12 +103,15 @@ function runApi(id, elemento){
 
         /* braçadeira */
         //150083646
+        //150088377
+        
         conjunto = tentaConjunto(response['results'][0]['equipments'], 'armband')
         listaItens.push(conjunto[1])
         $('.bracadeira .atk').html(zeraValor(parseInt(conjunto[0]['stats']['CommonAtk'])))
         $('.bracadeira .e-atk').html(zeraValor(parseInt(conjunto[0]['stats'][elemento])))
 
         /* cinto */
+        debugger
         conjunto = tentaConjunto(response['results'][0]['equipments'], 'belt')
         listaItens.push(conjunto[1])
         $('.cinto .atk').html(zeraValor(parseInt(conjunto[0]['stats']['CommonAtk'])))

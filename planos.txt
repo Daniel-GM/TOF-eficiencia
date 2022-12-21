@@ -1,15 +1,15 @@
-+digitar o UID v
+[v]digitar o UID
 
-+selecionar o elemento v
+[v]selecionar o elemento
 
-+selecionar o personagem
+[+]selecionar o personagem
 
-+calculadora de itens
+[+]calculadora de itens
 
-+preview de itens crit
+[+]preview de itens crit
 
-+calculadora de item bélico
+[+]calculadora de item bélico
 
-+criação de login
+[+]criação de login
 
-+graficos com Power BI
+[+]graficos com Power BI
