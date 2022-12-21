@@ -9,6 +9,13 @@ html, body{
   color: #fff;
 }
 
+/* voltar */
+button.logout-uid {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+}
+
 /* UID */
 .uid {
   display: flex;
@@ -46,6 +53,26 @@ input[type=text] {
   height: 100%;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+}
+
+input[type="radio"] {
+  visibility: hidden;
+}
+
+.radio-uid{
+  padding-top: 20px;
+  display: flex;
+}
+
+label .elementos{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  opacity: 50%;
+}
+
+input[type="radio"]:checked+label .elementos{
+  opacity: 100%;
 }
 
 .loading-uid{

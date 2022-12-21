@@ -1,6 +1,6 @@
-+digitar o UID
++digitar o UID v
 
-+selecionar o elemento
++selecionar o elemento v
 
 +selecionar o personagem
 

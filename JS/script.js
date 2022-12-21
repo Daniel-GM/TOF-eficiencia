@@ -1,15 +1,19 @@
 function buscaUID(){
   let id = $('.input-uid').val()
-  console.log(id.length)
+  let elemento = $('input[name="atk"]:checked')[0]['id']
   if (id.length < 9){
     alert("UID invalida")
   } else {
     $(".loading-uid").css("display", "block");
-    runApi(id)
+    runApi(id, elemento)
   }
 }
 
-function runApi(id){
+function logout(){
+  window.location.href = "";
+}
+
+function runApi(id, elemento){
 
   $.ajax({
     url: `https://tofapi.incin.net/scryglass/player/uid?uid=${id}`,
@@ -63,34 +67,71 @@ function runApi(id){
           else 
             return response
         }
-        /* elmo */
-        $('.elmo .atk').html(zeraValor(parseInt(response['results'][0]['equipments']['helmet']['stats']['CommonAtk'])))
-        $('.elmo .e-atk').html(zeraValor(parseInt(response['results'][0]['equipments']['helmet']['stats']['FireAtk'])))
-        /* ombreira */
-        $('.ombreira .atk').html(zeraValor(parseInt(response['results'][0]['equipments']['shawl']['stats']['CommonAtk'])))
-        $('.ombreira .e-atk').html(zeraValor(parseInt(response['results'][0]['equipments']['shawl']['stats']['FireAtk'])))
-        /* braçadeira */
-        $('.bracadeira .atk').html(zeraValor(parseInt(response['results'][0]['equipments']['armband']['stats']['CommonAtk'])))
-        $('.bracadeira .e-atk').html(zeraValor(parseInt(response['results'][0]['equipments']['armband']['stats']['FireAtk'])))
-        /* cinto */
-        $('.cinto .atk').html(zeraValor(parseInt(response['results'][0]['equipments']['belt']['stats']['CommonAtk'])))
-        $('.cinto .e-atk').html(zeraValor(parseInt(response['results'][0]['equipments']['belt']['stats']['FireAtk'])))
-        /* peitoral */
-        $('.peitoral .atk').html(zeraValor(parseInt(response['results'][0]['equipments']['cloth']['stats']['CommonAtk'])))
-        $('.peitoral .e-atk').html(zeraValor(parseInt(response['results'][0]['equipments']['cloth']['stats']['FireAtk'])))
-        /* calça */
-        $('.calca .atk').html(zeraValor(parseInt(response['results'][0]['equipments']['pants']['stats']['CommonAtk'])))
-        $('.calca .e-atk').html(zeraValor(parseInt(response['results'][0]['equipments']['pants']['stats']['FireAtk'])))
 
+        function tentaConjunto(response, slot){
+          try {
+            debugger
+            let tentativa1 = [response[slot], slot]
+            let tentativa2 = [response[slot+"2"], slot+"2"]
+            let tentativa3 = [response[slot+"3"], slot+"3"]
+            if(tentativa1[0] != undefined)
+              return tentativa1
+            else if(tentativa2[0] != undefined)
+              return tentativa2
+            else if(tentativa3[0] != undefined)
+              return tentativa3
+          } catch (error) {
+            
+          }
+            
+        }
+        let conjunto
+        let listaItens = []
+        /* elmo */
+        conjunto = tentaConjunto(response['results'][0]['equipments'], 'helmet')
+        listaItens.push(conjunto[1])
+        $('.elmo .atk').html(zeraValor(parseInt(conjunto[0]['stats']['CommonAtk'])))
+        $('.elmo .e-atk').html(zeraValor(parseInt(conjunto[0]['stats'][elemento])))
+
+        /* ombreira */
+        conjunto = tentaConjunto(response['results'][0]['equipments'], 'shawl')
+        listaItens.push(conjunto[1])
+        $('.ombreira .atk').html(zeraValor(parseInt(conjunto[0]['stats']['CommonAtk'])))
+        $('.ombreira .e-atk').html(zeraValor(parseInt(conjunto[0]['stats'][elemento])))
+
+        /* braçadeira */
+        //150083646
+        conjunto = tentaConjunto(response['results'][0]['equipments'], 'armband')
+        listaItens.push(conjunto[1])
+        $('.bracadeira .atk').html(zeraValor(parseInt(conjunto[0]['stats']['CommonAtk'])))
+        $('.bracadeira .e-atk').html(zeraValor(parseInt(conjunto[0]['stats'][elemento])))
+
+        /* cinto */
+        conjunto = tentaConjunto(response['results'][0]['equipments'], 'belt')
+        listaItens.push(conjunto[1])
+        $('.cinto .atk').html(zeraValor(parseInt(conjunto[0]['stats']['CommonAtk'])))
+        $('.cinto .e-atk').html(zeraValor(parseInt(conjunto[0]['stats'][elemento])))
+
+        /* peitoral */
+        conjunto = tentaConjunto(response['results'][0]['equipments'], 'cloth')
+        listaItens.push(conjunto[1])
+        $('.peitoral .atk').html(zeraValor(parseInt(conjunto[0]['stats']['CommonAtk'])))
+        $('.peitoral .e-atk').html(zeraValor(parseInt(conjunto[0]['stats'][elemento])))
+        
+        /* calça */
+        conjunto = tentaConjunto(response['results'][0]['equipments'], 'pants')
+        listaItens.push(conjunto[1])
+        $('.calca .atk').html(zeraValor(parseInt(conjunto[0]['stats']['CommonAtk'])))
+        $('.calca .e-atk').html(zeraValor(parseInt(conjunto[0]['stats'][elemento])))
+        //let listaItens = ["helmet", "shawl", "armband", "belt", "cloth", "pants"]
         /* porcentagens */
-        function calculoEficiencia(){
-          let listaItens = ["helmet", "shawl", "armband", "belt", "cloth", "pants"]
+        function calculoEficiencia(listaItens){
           let listaClasse = [".barra-elmo", ".barra-ombreira", ".barra-bracadeira", ".barra-cinto", ".barra-peitoral", ".barra-calca", ]
           let atk, atkE, soma, somaTotal=0
           const maxAtk = 1681
           for(let i=0; i<6; i++){
             atk = zeraValor(parseInt(response['results'][0]['equipments'][listaItens[i]]['stats']['CommonAtk']))
-            atkE = zeraValor(parseInt(response['results'][0]['equipments'][listaItens[i]]['stats']['FireAtk']))
+            atkE = zeraValor(parseInt(response['results'][0]['equipments'][listaItens[i]]['stats'][elemento]))
             soma = (((atk + atkE)*100)/maxAtk)
             somaTotal = soma + somaTotal
             
@@ -103,7 +144,8 @@ function runApi(id){
             }
           }
         }
-        calculoEficiencia()
+        console.log(listaItens)
+        calculoEficiencia(listaItens)
       },
       error: function (error) {
         $(".loading-uid").css("display", "none")

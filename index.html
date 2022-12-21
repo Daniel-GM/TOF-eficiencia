@@ -17,12 +17,25 @@
         <input class="input-uid" type="text" maxLength="10"/>
         <button class="submit-uid" onclick="buscaUID()">Buscar</button>
       </div>
+      <div class="radio-uid">
+        <input type="radio" name="atk" id="ThunderAtk" class="elemento" />
+        <label for="ThunderAtk"><img src="img/elementos/eletrico.webp" alt="" class="elementos"></label>
+        <input type="radio" name="atk" id="IceAtk" class="elemento" />
+        <label for="IceAtk"><img src="IMG/elementos/gelo.webp" alt="" class="elementos"></label>
+        <input type="radio" name="atk" id="FireAtk" class="elemento" />
+        <label for="FireAtk"><img src="img/elementos/fogo.webp" alt="" class="elementos"></label>
+        <input type="radio" name="atk" id="PhyAtk" class="elemento" />
+        <label for="PhyAtk"><img src="img/elementos/fisico.webp" alt="" class="elementos"></label>
+      </div>
       <img src="img/gif/loading/Infinity-1s-200px.svg" class="loading-uid">
       <span class="erro"></span>
     </div>
   </div>
 
   <div class="response">
+    <button class="logout-uid" onclick="logout()">
+      <span><img src="img/icon/logout-svgrepo-com.svg" class="logout-uid"> Sair</span>
+    </button>
     
     <section class="conta-info">
 
