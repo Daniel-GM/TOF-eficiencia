@@ -10,7 +10,19 @@
 </head>
 <body>
 
-  <div class="wrap">
+  <div class="uid">
+    <div class="card-uid">
+      <label for="text-input">Coloque sua UID</label>
+      <div class="pesquisa-uid">
+        <input class="input-uid" type="text" maxLength="10"/>
+        <button class="submit-uid" onclick="buscaUID()">Buscar</button>
+      </div>
+      <img src="img/gif/loading/Infinity-1s-200px.svg" class="loading-uid">
+      <span class="erro"></span>
+    </div>
+  </div>
+
+  <div class="response">
     
     <section class="conta-info">
 
@@ -255,7 +267,8 @@
 
     </section>
 
-  <div>
+  </div>
+
   <script src="JS/script.js"></script>
 </body>
 </html>

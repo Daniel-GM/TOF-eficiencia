@@ -4,10 +4,12 @@
 
 +selecionar o personagem
 
-+calculadora de itens upados
++calculadora de itens
 
 +preview de itens crit
 
 +calculadora de item bélico
 
 +criação de login
+
++graficos com Power BI

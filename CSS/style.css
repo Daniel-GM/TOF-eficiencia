@@ -2,15 +2,61 @@
 html, body{
   padding: 0px;
   margin: 0px;
-  background-color: #1b1b1b;
   font-family: Noto Sans KR,sans-serif;
+  background-color: #1b1b1b;
   font-size: 1.1rem;
   font-weight: 600;
+  color: #fff;
 }
 
-.wrap{
-  font-size: 1.1em;
-  color: #fff;
+/* UID */
+.uid {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-uid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pesquisa-uid {
+  padding-top: 25px;
+  width: 300px;
+  display: flex;
+}
+
+input[type=text] {
+  text-align: center;
+  height: 30px;
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+
+.submit-uid{
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.loading-uid{
+  display: none;
+  position: absolute;
+  bottom: 150px;
+}
+
+/* response */
+.response{
+  display: none;
 }
 
 /*dados da conta*/

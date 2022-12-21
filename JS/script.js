@@ -1,13 +1,25 @@
-testarApi()
+function buscaUID(){
+  let id = $('.input-uid').val()
+  console.log(id.length)
+  if (id.length < 9){
+    alert("UID invalida")
+  } else {
+    $(".loading-uid").css("display", "block");
+    runApi(id)
+  }
+}
 
-function testarApi(){
+function runApi(id){
+
   $.ajax({
-    url: "https://tofapi.incin.net/scryglass/player/uid?uid=150081116",
+    url: `https://tofapi.incin.net/scryglass/player/uid?uid=${id}`,
     method:'get',
     crossDomain: true,
     success: function (response) {
-        console.log(response)
-        /**
+      $(".loading-uid").css("display", "none")
+      $(".uid").css("display", "none")
+      $(".response").css("display", "block")
+      /**
          * response intro
          */
         $('.nickname').html("Nickname: " + response['results'][0]['nickname'])
@@ -18,7 +30,7 @@ function testarApi(){
 
         /**
          * response weapon
-        */
+         */
         function adicionarConstelacao(response, div){
           for(var i=0; i<6; i++) {
             if(response >= (i+1))
@@ -94,7 +106,8 @@ function testarApi(){
         calculoEficiencia()
       },
       error: function (error) {
-        $('#target').html("['error' => '"+error.statusText+"']");
+        $(".loading-uid").css("display", "none")
+        $('.erro').html("['error' => '"+error.statusText+"']");
     }
   })
 }
