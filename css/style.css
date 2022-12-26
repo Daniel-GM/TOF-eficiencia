@@ -9,19 +9,10 @@ html, body{
   color: #fff;
 }
 
-/* voltar */
-button.logout-uid {
-  position: absolute;
-  right: 0%;
-  top: 0%;
-}
-
 /* UID */
 .uid {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100%;
   align-items: center;
   justify-content: center;
 }
@@ -40,27 +31,12 @@ button.logout-uid {
   display: flex;
 }
 
-input[type=text] {
-  text-align: center;
-  height: 30px;
-  width: 100%;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
-
-
-.submit-uid{
-  height: 100%;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
-
 input[type="radio"] {
   visibility: hidden;
 }
 
 .radio-uid{
-  padding-top: 20px;
+  padding: 20px 0px;
   display: flex;
 }
 
@@ -75,16 +51,8 @@ input[type="radio"]:checked+label .elementos{
   opacity: 100%;
 }
 
-.loading-uid{
-  display: none;
-  position: absolute;
-  bottom: 150px;
-}
-
 /* response */
-.response{
-  display: none;
-}
+
 
 /*dados da conta*/
 section.conta-info {
