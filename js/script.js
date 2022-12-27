@@ -70,7 +70,7 @@ function setStatus(){
 }
 
 function getEAtk(elemento){
-  $('.icon-e-ataque').attr("src","/img/status/"+elemento+".webp")
+  $('.icon-e-ataque').attr("src","img/status/"+elemento+".webp")
   if(elemento == 'ThunderAtk')
     return 'AtkThunder'
   else if(elemento == 'IceAtk')
