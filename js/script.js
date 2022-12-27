@@ -33,6 +33,8 @@ function setStatus(){
     $('.calca .atk').html(equipamentos[5].get(atkElemento))
     $('.calca .e-atk').html(equipamentos[5].get(elemento))
 
+    
+
     calculoEficiencia(equipamentos, atkElemento, elemento)
   })
 
@@ -79,6 +81,24 @@ function getEAtk(elemento){
     return 'AtkFire'
   else if(elemento == 'PhyAtk')
     return 'AtkPhy'
+}
+
+function editaEquipamento(id){
+  let equipamentos = setEquipamentos()
+  let elemento = $('.elemento:checked')[0]['id']
+  let atk = 'Atk'
+  id = id.replace('editar-', '')
+  elemento = elemento.replace('Atk', '')
+  console.log(equipamentos+' '+elemento)
+  atk = atk.concat(elemento)
+}
+
+function salvaStatus(){
+  let atk = $('.text-atk').val()
+  let atkE = $('.text-atk-e').val()
+  $('.text-atk').val('')
+  $('.text-atk-e').val('')
+  console.log($('.equipamento-modal')[0]['src'])
 }
 
 function setEquipamentos(){

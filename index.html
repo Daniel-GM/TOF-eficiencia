@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
@@ -8,10 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TOF API</title>
 </head>
+
 <body>
-  
+
   <div class="uid">
-    <div class="card-uid">      
+    <div class="card-uid">
       <div class="radio-uid">
         <input type="radio" name="atk" id="ThunderAtk" class="elemento" />
         <label for="ThunderAtk"><img src="img/elementos/eletrico.webp" alt="" class="elementos"></label>
@@ -21,6 +23,22 @@
         <label for="FireAtk"><img src="img/elementos/fogo.webp" alt="" class="elementos"></label>
         <input type="radio" name="atk" id="PhyAtk" class="elemento" />
         <label for="PhyAtk"><img src="img/elementos/fisico.webp" alt="" class="elementos"></label>
+      </div>
+    </div>
+    <div class="card-uid">
+      <div class="radio-uid">
+        <input type="radio" name="atk" id="ThunderAtk" class="elemento" />
+        <label for="ThunderAtk"><img src="img/equipamentos/elmo.webp" alt="" class="conf-equipamentos"></label>
+        <input type="radio" name="atk" id="IceAtk" class="elemento" />
+        <label for="IceAtk"><img src="img/equipamentos/ombreira.webp" alt="" class="conf-equipamentos"></label>
+        <input type="radio" name="atk" id="FireAtk" class="elemento" />
+        <label for="FireAtk"><img src="img/equipamentos/bracadeira.webp" alt="" class="conf-equipamentos"></label>
+        <input type="radio" name="atk" id="PhyAtk" class="elemento" />
+        <label for="PhyAtk"><img src="img/equipamentos/cinto.webp" alt="" class="conf-equipamentos"></label>
+        <input type="radio" name="atk" id="FireAtk" class="elemento" />
+        <label for="FireAtk"><img src="img/equipamentos/peitoral.webp" alt="" class="conf-equipamentos"></label>
+        <input type="radio" name="atk" id="PhyAtk" class="elemento" />
+        <label for="PhyAtk"><img src="img/equipamentos/calca.webp" alt="" class="conf-equipamentos"></label>
       </div>
     </div>
   </div>
@@ -33,178 +51,201 @@
       <div class="equips-full">
         <div class="dados">
           <div class="elmo">
-          <div class="status">
-            <span>Eficiência total dos equipamentos:</span>
+            <div class="status">
+              <span>Eficiência total dos equipamentos:</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="barra barra-total">
-        <div class="eficiencia"></div>
-        <div class="porcentagem"></div>
-      </div>     
+        <div class="barra barra-total">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
       </div>
     </section>
 
     <section class="equips">
       <div class="equipamento">
+        <div class="div-editar">
+          <input type="image" src="img/icon/edit_black_24dp.svg" class="editar" id="editar-elmo" onclick="editaEquipamento(this.id)"></input>
+        </div>
         <div class="dados">
           <div class="elmo">
             <img src="img/equipamentos/elmo.webp" class="equip-img">
-          <div class="status">
-            <div class="ataque">
-              <img src="img/status/atk.webp" class="icon-ataque">
-              <span class="atk"></span>
-              <div class="eficiencia"></div>
+            <div class="status">
+              <div class="ataque">
+                <img src="img/status/atk.webp" class="icon-ataque">
+                <span class="atk"></span>
+                <div class="eficiencia"></div>
+              </div>
+              <div class="e-ataque">
+                <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
+                <span class="e-atk"></span>
+              </div>
             </div>
-            
-            <div class="e-ataque">              
-              <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
-              <span class="e-atk"></span>
-            </div>
-            
           </div>
         </div>
-      </div>
-      <div class="barra barra-elmo">
-        <div class="eficiencia"></div>
-        <div class="porcentagem"></div>
-      </div>     
+        <div class="barra barra-elmo">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
       </div>
 
       <div class="equipamento2">
+        <div class="div-editar">
+          <input type="image" src="img/icon/edit_black_24dp.svg" class="editar" id="editar-ombreira" onclick="editaEquipamento(this.id)"></input>
+        </div>
         <div class="dados">
           <div class="ombreira">
             <img src="img/equipamentos/ombreira.webp" class="equip-img">
-          <div class="status">
-            <div class="ataque">
-              <img src="img/status/atk.webp" class="icon-ataque">
-              <span class="atk"></span>
-              <div class="eficiencia"></div>
+            <div class="status">
+              <div class="ataque">
+                <img src="img/status/atk.webp" class="icon-ataque">
+                <span class="atk"></span>
+                <div class="eficiencia"></div>
+              </div>
+              <div class="e-ataque">
+                <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
+                <span class="e-atk"></span>
+              </div>
             </div>
-            
-            <div class="e-ataque">
-              
-              <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
-              <span class="e-atk"></span>
-            </div>
-            
           </div>
         </div>
-      </div>
-      <div class="barra barra-ombreira">
-        <div class="eficiencia"></div>
-        <div class="porcentagem"></div>
-      </div>     
+        <div class="barra barra-ombreira">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
       </div>
 
       <div class="equipamento">
+        <div class="div-editar">
+          <input type="image" src="img/icon/edit_black_24dp.svg" class="editar" id="editar-bracadeira" onclick="editaEquipamento(this.id)"></input>
+        </div>
         <div class="dados">
           <div class="bracadeira">
             <img src="img/equipamentos/bracadeira.webp" class="equip-img">
-          <div class="status">
-            <div class="ataque">
-              <img src="img/status/atk.webp" class="icon-ataque">
-              <span class="atk"></span>
-              <div class="eficiencia"></div>
+            <div class="status">
+              <div class="ataque">
+                <img src="img/status/atk.webp" class="icon-ataque">
+                <span class="atk"></span>
+                <div class="eficiencia"></div>
+              </div>
+              <div class="e-ataque">
+                <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
+                <span class="e-atk"></span>
+              </div>
             </div>
-            
-            <div class="e-ataque">
-              
-              <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
-              <span class="e-atk"></span>
-            </div>
-            
           </div>
         </div>
-      </div>
-      <div class="barra barra-bracadeira">
-        <div class="eficiencia"></div>
-        <div class="porcentagem"></div>
-      </div>     
+        <div class="barra barra-bracadeira">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
       </div>
 
       <div class="equipamento2">
+        <div class="div-editar">
+          <input type="image" src="img/icon/edit_black_24dp.svg" class="editar" id="editar-cinto" onclick="editaEquipamento(this.id)"></input>
+        </div>
         <div class="dados">
           <div class="cinto">
             <img src="img/equipamentos/cinto.webp" class="equip-img">
-          <div class="status">
-            <div class="ataque">
-              <img src="img/status/atk.webp" class="icon-ataque">
-              <span class="atk"></span>
-              <div class="eficiencia"></div>
+            <div class="status">
+              <div class="ataque">
+                <img src="img/status/atk.webp" class="icon-ataque">
+                <span class="atk"></span>
+                <div class="eficiencia"></div>
+              </div>
+              <div class="e-ataque">
+                <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
+                <span class="e-atk"></span>
+              </div>
             </div>
-            
-            <div class="e-ataque">
-              
-              <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
-              <span class="e-atk"></span>
-            </div>
-            
           </div>
         </div>
-      </div>
-      <div class="barra barra-cinto">
-        <div class="eficiencia"></div>
-        <div class="porcentagem"></div>
-      </div>     
+        <div class="barra barra-cinto">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
       </div>
 
       <div class="equipamento">
+        <div class="div-editar">
+          <input type="image" src="img/icon/edit_black_24dp.svg" class="editar" id="editar-peitoral" onclick="editaEquipamento(this.id)"></input>
+        </div>
         <div class="dados">
           <div class="peitoral">
             <img src="img/equipamentos/peitoral.webp" class="equip-img">
-          <div class="status">
-            <div class="ataque">
-              <img src="img/status/atk.webp" class="icon-ataque">
-              <span class="atk"></span>
-              <div class="eficiencia"></div>
+            <div class="status">
+              <div class="ataque">
+                <img src="img/status/atk.webp" class="icon-ataque">
+                <span class="atk"></span>
+                <div class="eficiencia"></div>
+              </div>
+              <div class="e-ataque">
+                <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
+                <span class="e-atk"></span>
+              </div>
             </div>
-            
-            <div class="e-ataque">
-              
-              <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
-              <span class="e-atk"></span>
-            </div>
-            
           </div>
         </div>
-      </div>
-      <div class="barra barra-peitoral">
-        <div class="eficiencia"></div>
-        <div class="porcentagem"></div>
-      </div>     
+        <div class="barra barra-peitoral">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
       </div>
 
       <div class="equipamento2">
+        <div class="div-editar">
+          <input type="image" src="img/icon/edit_black_24dp.svg" class="editar" id="editar-calca" onclick="editaEquipamento(this.id)"></input>
+        </div>
         <div class="dados">
           <div class="calca">
             <img src="img/equipamentos/calca.webp" class="equip-img">
-          <div class="status">
-            <div class="ataque">
-              <img src="img/status/atk.webp" class="icon-ataque">
-              <span class="atk"></span>
-              <div class="eficiencia"></div>
+            <div class="status">
+              <div class="ataque">
+                <img src="img/status/atk.webp" class="icon-ataque">
+                <span class="atk"></span>
+                <div class="eficiencia"></div>
+              </div>
+              <div class="e-ataque">
+                <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
+                <span class="e-atk"></span>
+              </div>
             </div>
-            
-            <div class="e-ataque">
-              
-              <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
-              <span class="e-atk"></span>
-            </div>
-            
           </div>
         </div>
+        <div class="barra barra-calca">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
       </div>
-      <div class="barra barra-calca">
-        <div class="eficiencia"></div>
-        <div class="porcentagem"></div>
-      </div>     
-      </div>
-
     </section>
 
   </div>
 
+  <section class="modal-editar">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="itens-modal">
+          <img src="img/equipamentos/elmo.webp" class="equipamento-modal">
+          <div class="modal-atk">
+            <img src="img/status/atk.webp" class="img-atk">
+            <input type="text" class="text-atk">
+          </div>
+          <div class="modal-atk-e">
+            <img src="img/status/ThunderAtk.webp" class="img-atk-e">
+            <input type="text" class="text-atk-e">
+          </div>
+          <div class="btn-salvar">
+            <button type="submit" class="salvar-editar" onclick="salvaStatus()"><i class="fa fa-save"></i> Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://use.fontawesome.com/62e43a72a9.js"></script>
   <script src="js/script.js"></script>
 </body>
+
 </html>

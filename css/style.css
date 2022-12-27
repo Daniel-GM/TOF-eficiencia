@@ -47,6 +47,11 @@ label .elementos{
   opacity: 50%;
 }
 
+label .conf-equipamentos{
+  width: 50px;
+  opacity: 50%;
+}
+
 input[type="radio"]:checked+label .elementos{
   opacity: 100%;
 }
@@ -127,6 +132,24 @@ div.weapons{
   margin-top: 20px;
 }
 
+.card-equipamento{
+  border: 2px solid #fff;
+  width: 46%;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.div-editar{
+  width: 100%;
+}
+
+.editar{
+  float: right;
+  width: 20px;
+  background-color: #fff;
+  border-bottom-left-radius: 15%;
+}
+
 .equips{
   background-color: #1b1b1b;
   padding: 1%;
@@ -141,12 +164,15 @@ div.weapons{
 
 .equipamento, .equipamento2{
   background-color: #00000030;
-  border-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border: 1px solid #fff;
   display: flex;
   align-items: center;
   width: 48%;
-  margin-bottom: 0.5rem;
-  margin-right: 0.5rem;
+  margin-bottom: 0.4rem;
+  margin-right: 0.4rem;
 }
 
 .equipamento2{
@@ -166,7 +192,7 @@ div.weapons{
   align-items: center;
 }
 
-.ataque, .e-ataque {
+.ataque, .e-ataque, .img-atk, .img-atk-e{
   display: flex;
   align-items: center;
   padding: 5px;
@@ -215,4 +241,64 @@ div.barra-total{
   justify-content: center;
   color: #fff;  
   text-shadow: #000 1px 0 10px;
+}
+
+/* modal */
+.equipamento-modal{
+  width: 80px;
+}
+
+.modal-atk, .modal-atk-e{
+  display: flex;
+}
+
+.modal {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.itens-modal{
+  background-color: #161616;
+  width: 30%;
+}
+
+.modal-atk, .modal-atk-e, .itens-modal{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-atk-e, .text-atk{
+  width: 100%;
+}
+
+.img-atk, .img-atk-e, .equipamento-modal{
+  width: 15%;
+}
+
+.btn-salvar {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.equipamento-modal, .salvar-editar{
+  margin: 20px 0;
+}
+
+.salvar-editar {
+  width: 50%;
+  border: 2px solid #fff;
+  background-color: #161616;
+  color: #fff;
+  padding: 5px;
+  border-radius: 200px;
 }
