@@ -1,86 +1,87 @@
 let elmo = {
-  'AtkThunder': 359,
-  'AtkIce': 0,
-  'AtkFire': 52,
-  'AtkPhy': 0,
-  'ThunderAtk': 500,
-  'IceAtk': 0,
-  'FireAtk': 683,
-  'PhyAtk': 0
-}
-let ombreira = {
-  'AtkThunder': 850,
-  'AtkIce': 0,
-  'AtkFire': 850,
-  'AtkPhy': 0,
-  'ThunderAtk': 364,
-  'IceAtk': 0,
-  'FireAtk': 0,
-  'PhyAtk': 0
-}
-let bracadeira = {
-  'AtkThunder': 275,
+  'AtkThunder': 0,
   'AtkIce': 0,
   'AtkFire': 0,
   'AtkPhy': 0,
   'ThunderAtk': 0,
   'IceAtk': 0,
-  'FireAtk': 800,
+  'FireAtk': 0,
+  'PhyAtk': 0
+}
+let ombreira = {
+  'AtkThunder': 0,
+  'AtkIce': 0,
+  'AtkFire': 0,
+  'AtkPhy': 0,
+  'ThunderAtk': 0,
+  'IceAtk': 0,
+  'FireAtk': 0,
+  'PhyAtk': 0
+}
+let bracadeira = {
+  'AtkThunder': 0,
+  'AtkIce': 0,
+  'AtkFire': 0,
+  'AtkPhy': 0,
+  'ThunderAtk': 0,
+  'IceAtk': 0,
+  'FireAtk': 0,
   'PhyAtk': 0
 }
 let cinto = {
-  'AtkThunder': 261,
+  'AtkThunder': 0,
   'AtkIce': 0,
-  'AtkFire': 354,
+  'AtkFire': 0,
   'AtkPhy': 0,
-  'ThunderAtk': 479,
+  'ThunderAtk': 0,
   'IceAtk': 0,
-  'FireAtk': 378,
+  'FireAtk': 0,
   'PhyAtk': 0
 }
 let peitoral = {
-  'AtkThunder': 358,
+  'AtkThunder': 0,
   'AtkIce': 0,
-  'AtkFire': 464,
+  'AtkFire': 0,
   'AtkPhy': 0,
-  'ThunderAtk': 502,
+  'ThunderAtk': 0,
   'IceAtk': 0,
-  'FireAtk': 439,
+  'FireAtk': 0,
   'PhyAtk': 0
 }
 let calca = {
-  'AtkThunder': 231,
+  'AtkThunder': 0,
   'AtkIce': 0,
-  'AtkFire': 270,
+  'AtkFire': 0,
   'AtkPhy': 0,
-  'ThunderAtk': 709,
+  'ThunderAtk': 0,
   'IceAtk': 0,
-  'FireAtk': 519,
+  'FireAtk': 0,
   'PhyAtk': 0
 }
+
 
 function printaTela(){
   let elemento = $('.elemento:checked')[0]['id']
   let atkElemento = getEAtk(elemento)
   
   /* elmo */  
-  $('.elmo .atk').html(elmo[atkElemento])
-  $('.elmo .e-atk').html(elmo[elemento])
+  $('.elmo .atk').html(zeraValor(JSON.parse(localStorage.getItem('elmo'))[atkElemento]))
+  $('.elmo .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('elmo'))[elemento]))
   /* ombreira */
-  $('.ombreira .atk').html(ombreira[atkElemento])
-  $('.ombreira .e-atk').html(ombreira[elemento])
+  $('.ombreira .atk').html(zeraValor(JSON.parse(localStorage.getItem('ombreira'))[atkElemento]))
+  $('.ombreira .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('ombreira'))[elemento]))
   /* braçadeira */  
-  $('.bracadeira .atk').html(bracadeira[atkElemento])
-  $('.bracadeira .e-atk').html(bracadeira[elemento])
+  $('.bracadeira .atk').html(zeraValor(JSON.parse(localStorage.getItem('bracadeira'))[atkElemento]))
+  $('.bracadeira .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('bracadeira'))[elemento]))
   /* cinto */
-  $('.cinto .atk').html(cinto[atkElemento])
-  $('.cinto .e-atk').html(cinto[elemento])
+  $('.cinto .atk').html(zeraValor(JSON.parse(localStorage.getItem('cinto'))[atkElemento]))
+  $('.cinto .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('cinto'))[elemento]))
   /* peitoral */
-  $('.peitoral .atk').html(peitoral[atkElemento])
-  $('.peitoral .e-atk').html(peitoral[elemento])
+  $('.peitoral .atk').html(zeraValor(JSON.parse(localStorage.getItem('peitoral'))[atkElemento]))
+  $('.peitoral .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('peitoral'))[elemento]))
   /* calça */
-  $('.calca .atk').html(calca[atkElemento])
-  $('.calca .e-atk').html(calca[elemento])
+  $('.calca .atk').html(zeraValor(JSON.parse(localStorage.getItem('calca'))[atkElemento]))
+  $('.calca .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('calca'))[elemento]))
 
   calculoEficiencia(atkElemento, elemento)
 }
@@ -93,13 +94,23 @@ function zeraValor(response){
 }
 
 function calculoEficiencia(atkElemento, elemento){
-  let listaItens = [elmo, ombreira, bracadeira, cinto, peitoral, calca]
-  let listaClasse = [".barra-elmo", ".barra-ombreira", ".barra-bracadeira", ".barra-cinto", ".barra-peitoral", ".barra-calca", ]
+  let listaItens = ['elmo', 'ombreira', 'bracadeira', 'cinto', 'peitoral', 'calca']
+  let listaClasse = [".barra-elmo", ".barra-ombreira", ".barra-bracadeira", ".barra-cinto", ".barra-peitoral", ".barra-calca"]
   let atk, atkE, soma, somaTotal=0
   const maxAtk = 1681
+  let calcula
+
   for(let i=0; i<6; i++){
-    atk = zeraValor(listaItens[i][atkElemento])
-    atkE = zeraValor(listaItens[i][elemento])
+    calcula = localStorage.getItem(listaItens[i])
+    atk = 0
+    atkE = 0
+
+    if(typeof(calcula) == 'string'){
+      calcula = JSON.parse(localStorage.getItem(listaItens[i]))
+      atk = zeraValor(calcula[atkElemento])
+      atkE = zeraValor(calcula[elemento])
+    }
+
     soma = (((atk + atkE)*100)/maxAtk)
     somaTotal = soma + somaTotal
     
@@ -148,23 +159,26 @@ function salvaStatus(){
   equipamentoModal = equipamentoModal.replace('.webp', '')
   
   if(equipamentoModal == 'elmo') 
-    setStatus(elmo, elemento)
+    setStatus(elmo, elemento, equipamentoModal)
   else if(equipamentoModal == 'ombreira') 
-    setStatus(ombreira, elemento)
+    setStatus(ombreira, elemento, equipamentoModal)
   else if(equipamentoModal == 'bracadeira')
-    setStatus(bracadeira, elemento)
+    setStatus(bracadeira, elemento, equipamentoModal)
   else if(equipamentoModal == 'cinto')
-    setStatus(cinto, elemento)
+    setStatus(cinto, elemento, equipamentoModal)
   else if(equipamentoModal == 'peitoral')
-    setStatus(peitoral, elemento)
+    setStatus(peitoral, elemento, equipamentoModal)
   else if(equipamentoModal == 'calca')
-    setStatus(calca, elemento)
+    setStatus(calca, elemento, equipamentoModal)
 }
 
-function setStatus(peca, elemento){
+function setStatus(peca, elemento, equipamentoModal){
   peca[elemento] = Number($('.text-atk-e').val())
   peca[getEAtk(elemento)] = Number($('.text-atk').val())
 
+  localStorage.setItem(equipamentoModal, JSON.stringify(peca))
+  console.log(localStorage.getItem(equipamentoModal))
+  
   $('.text-atk').val('')
   $('.text-atk-e').val('')
 
@@ -172,10 +186,11 @@ function setStatus(peca, elemento){
 }
 
 /*
-helmet - elmo - 384 - 582
-spaulders - ombreira - 360 - 332
-bracers - braçadeira - 769 - 69
-belt - cinto - 378 - 544
-armor - peitoral - 0 - 640
-leggguards - calca - 510 - 244
+helmet - elmo - 384 - 582 - 57%
+spaulders - ombreira - 360 - 332 - 41%
+bracers - braçadeira - 769 - 69 - 50%
+belt - cinto - 378 - 544 - 55%
+armor - peitoral - 0 - 640 - 38%
+leggguards - calca - 510 - 244 - 45%
 */
+
