@@ -58,30 +58,59 @@ let calca = {
   'FireAtk': 0,
   'PhyAtk': 0
 }
-
+let inicia = 0
 
 function printaTela(){
   let elemento = $('.elemento:checked')[0]['id']
   let atkElemento = getEAtk(elemento)
   
-  /* elmo */  
-  $('.elmo .atk').html(zeraValor(JSON.parse(localStorage.getItem('elmo'))[atkElemento]))
-  $('.elmo .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('elmo'))[elemento]))
-  /* ombreira */
-  $('.ombreira .atk').html(zeraValor(JSON.parse(localStorage.getItem('ombreira'))[atkElemento]))
-  $('.ombreira .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('ombreira'))[elemento]))
-  /* braçadeira */  
-  $('.bracadeira .atk').html(zeraValor(JSON.parse(localStorage.getItem('bracadeira'))[atkElemento]))
-  $('.bracadeira .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('bracadeira'))[elemento]))
-  /* cinto */
-  $('.cinto .atk').html(zeraValor(JSON.parse(localStorage.getItem('cinto'))[atkElemento]))
-  $('.cinto .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('cinto'))[elemento]))
-  /* peitoral */
-  $('.peitoral .atk').html(zeraValor(JSON.parse(localStorage.getItem('peitoral'))[atkElemento]))
-  $('.peitoral .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('peitoral'))[elemento]))
-  /* calça */
-  $('.calca .atk').html(zeraValor(JSON.parse(localStorage.getItem('calca'))[atkElemento]))
-  $('.calca .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('calca'))[elemento]))
+  if(typeof(localStorage.getItem('elmo')) == 'string'){
+    $('.elmo .atk').html(zeraValor(JSON.parse(localStorage.getItem('elmo'))[atkElemento]))
+    $('.elmo .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('elmo'))[elemento]))
+  } else {
+    $('.elmo .atk').html(0)
+    $('.elmo .e-atk').html(0)
+  }
+  
+  if(typeof(localStorage.getItem('ombreira')) == 'string'){
+    $('.ombreira .atk').html(zeraValor(JSON.parse(localStorage.getItem('ombreira'))[atkElemento]))
+    $('.ombreira .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('ombreira'))[elemento]))
+  } else {
+    $('.ombreira .atk').html(0)
+    $('.ombreira .e-atk').html(0)
+  }
+
+  if(typeof(localStorage.getItem('bracadeira')) == 'string'){
+    $('.bracadeira .atk').html(zeraValor(JSON.parse(localStorage.getItem('bracadeira'))[atkElemento]))
+    $('.bracadeira .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('bracadeira'))[elemento]))
+  } else {
+    $('.bracadeira .atk').html(0)
+    $('.bracadeira .e-atk').html(0)
+  }
+  
+  if(typeof(localStorage.getItem('cinto')) == 'string'){
+    $('.cinto .atk').html(zeraValor(JSON.parse(localStorage.getItem('cinto'))[atkElemento]))
+    $('.cinto .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('cinto'))[elemento]))
+  } else {
+    $('.cinto .atk').html(0)
+    $('.cinto .e-atk').html(0)
+  }
+
+  if(typeof(localStorage.getItem('peitoral')) == 'string'){
+    $('.peitoral .atk').html(zeraValor(JSON.parse(localStorage.getItem('peitoral'))[atkElemento]))
+    $('.peitoral .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('peitoral'))[elemento]))
+  } else {
+    $('.peitoral .atk').html(0)
+    $('.peitoral .e-atk').html(0)
+  }
+  
+  if(typeof(localStorage.getItem('calca')) == 'string'){
+    $('.calca .atk').html(zeraValor(JSON.parse(localStorage.getItem('calca'))[atkElemento]))
+    $('.calca .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('calca'))[elemento]))
+  } else {
+    $('.calca .atk').html(0)
+    $('.calca .e-atk').html(0)
+  }
 
   calculoEficiencia(atkElemento, elemento)
 }
