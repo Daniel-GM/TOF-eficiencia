@@ -1,74 +1,70 @@
 setStatus()
 
-function setStatus(){
-  let elemento
-  let atkElemento
+function printaTela(){
+  let elemento = $('.elemento:checked')[0]['id']
+  let atkElemento = getEAtk(elemento)
+  let equipamentos = setEquipamentos()
+  
+  /* elmo */
+  $('.elmo .atk').html(equipamentos[0].get(atkElemento))
+  $('.elmo .e-atk').html(equipamentos[0].get(elemento))
+  
+  /* ombreira */
+  $('.ombreira .atk').html(equipamentos[1].get(atkElemento))
+  $('.ombreira .e-atk').html(equipamentos[1].get(elemento))
 
-  $('.elemento').click(() => {
-    elemento = $('.elemento:checked')[0]['id']
-    equipamentos = setEquipamentos()
-    atkElemento = getEAtk(elemento)
+  /* braçadeira */  
+  $('.bracadeira .atk').html(equipamentos[2].get(atkElemento))
+  $('.bracadeira .e-atk').html(equipamentos[2].get(elemento))
 
-    /* elmo */
-    $('.elmo .atk').html(equipamentos[0].get(atkElemento))
-    $('.elmo .e-atk').html(equipamentos[0].get(elemento))
+  /* cinto */
+  $('.cinto .atk').html(equipamentos[3].get(atkElemento))
+  $('.cinto .e-atk').html(equipamentos[3].get(elemento))
+
+  /* peitoral */
+  $('.peitoral .atk').html(equipamentos[4].get(atkElemento))
+  $('.peitoral .e-atk').html(equipamentos[4].get(elemento))
+  
+  /* calça */
+  $('.calca .atk').html(equipamentos[5].get(atkElemento))
+  $('.calca .e-atk').html(equipamentos[5].get(elemento))
+
+  calculoEficiencia(equipamentos, atkElemento, elemento)
+}
+
+function zeraValor(response){
+  if(!(response > 0))
+    return 0
+  else 
+    return response
+}
+
+/* porcentagens */
+function calculoEficiencia(listaItens, atkElemento, elemento){
+  console.log(listaItens)
+  let listaClasse = [".barra-elmo", ".barra-ombreira", ".barra-bracadeira", ".barra-cinto", ".barra-peitoral", ".barra-calca", ]
+  let atk, atkE, soma, somaTotal=0
+  const maxAtk = 1681
+  for(let i=0; i<6; i++){
+    atk = zeraValor(listaItens[i].get(atkElemento))
+    atkE = zeraValor(listaItens[i].get(elemento))
+    soma = (((atk + atkE)*100)/maxAtk)
+    somaTotal = soma + somaTotal
     
-    /* ombreira */
-    $('.ombreira .atk').html(equipamentos[1].get(atkElemento))
-    $('.ombreira .e-atk').html(equipamentos[1].get(elemento))
+    $(listaClasse[i] + " .eficiencia").css('width', soma.toFixed(2)+'%')
+    $(listaClasse[i] + " .porcentagem").html(soma.toFixed(2)+'%')
 
-    /* braçadeira */  
-    $('.bracadeira .atk').html(equipamentos[2].get(atkElemento))
-    $('.bracadeira .e-atk').html(equipamentos[2].get(elemento))
-
-    /* cinto */
-    $('.cinto .atk').html(equipamentos[3].get(atkElemento))
-    $('.cinto .e-atk').html(equipamentos[3].get(elemento))
-
-    /* peitoral */
-    $('.peitoral .atk').html(equipamentos[4].get(atkElemento))
-    $('.peitoral .e-atk').html(equipamentos[4].get(elemento))
-    
-    /* calça */
-    $('.calca .atk').html(equipamentos[5].get(atkElemento))
-    $('.calca .e-atk').html(equipamentos[5].get(elemento))
-
-    
-
-    calculoEficiencia(equipamentos, atkElemento, elemento)
-  })
-
-   /**
-   * response equips
-   */
-  function zeraValor(response){
-    if(!(response > 0))
-      return 0
-    else 
-      return response
-  }
-
-  /* porcentagens */
-  function calculoEficiencia(listaItens, atkElemento, elemento){
-    console.log(listaItens)
-    let listaClasse = [".barra-elmo", ".barra-ombreira", ".barra-bracadeira", ".barra-cinto", ".barra-peitoral", ".barra-calca", ]
-    let atk, atkE, soma, somaTotal=0
-    const maxAtk = 1681
-    for(let i=0; i<6; i++){
-      atk = zeraValor(listaItens[i].get(atkElemento))
-      atkE = zeraValor(listaItens[i].get(elemento))
-      soma = (((atk + atkE)*100)/maxAtk)
-      somaTotal = soma + somaTotal
-      
-      $(listaClasse[i] + " .eficiencia").css('width', soma.toFixed(2)+'%')
-      $(listaClasse[i] + " .porcentagem").html(soma.toFixed(2)+'%')
-
-      if(i == 5){
-        $(".barra-total .eficiencia").css('width', (somaTotal/6).toFixed(2)+'%')
-        $(".status-full .porcentagem").html((somaTotal/6).toFixed(2)+'%')
-      }
+    if(i == 5){
+      $(".barra-total .eficiencia").css('width', (somaTotal/6).toFixed(2)+'%')
+      $(".status-full .porcentagem").html((somaTotal/6).toFixed(2)+'%')
     }
   }
+}
+
+function setStatus(){
+  $('.elemento').click(() => {
+    printaTela()
+  })  
 }
 
 function getEAtk(elemento){
@@ -88,17 +84,21 @@ function editaEquipamento(id){
   let elemento = $('.elemento:checked')[0]['id']
   let atk = 'Atk'
   id = id.replace('editar-', '')
-  elemento = elemento.replace('Atk', '')
-  console.log(equipamentos+' '+elemento)
-  atk = atk.concat(elemento)
+  $('.equipamento-modal').attr('src',$('.'+id+' .equip-img')[0]['src'])
+  $('.img-atk-e').attr('src','img/status/'+elemento+'.webp')
 }
 
 function salvaStatus(){
-  let atk = $('.text-atk').val()
-  let atkE = $('.text-atk-e').val()
-  $('.text-atk').val('')
-  $('.text-atk-e').val('')
-  console.log($('.equipamento-modal')[0]['src'])
+  let elemento = $('.elemento:checked')[0]['id']
+  let equipamentoModal = $('.equipamento-modal')[0]['src']
+  equipamentoModal = equipamentoModal.replace('http://127.0.0.1:3000/img/equipamentos/', '')
+  equipamentoModal = equipamentoModal.replace('.webp', '')
+  
+  let teste = setEquipamentos()
+  teste[2].set(elemento, $('.text-atk-e').val())
+  teste[2].set(getEAtk(elemento), $('.text-atk').val())
+
+  printaTela()
 }
 
 function setEquipamentos(){

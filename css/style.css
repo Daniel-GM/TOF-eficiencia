@@ -266,7 +266,9 @@ div.barra-total{
 
 .itens-modal{
   background-color: #161616;
-  width: 30%;
+  width: 100%;
+  padding-right: 15%;
+  padding-left: 15%;
 }
 
 .modal-atk, .modal-atk-e, .itens-modal{
@@ -279,8 +281,12 @@ div.barra-total{
   width: 100%;
 }
 
-.img-atk, .img-atk-e, .equipamento-modal{
+.img-atk, .img-atk-e{
   width: 15%;
+}
+
+.equipamento-modal{
+  width: 25%;
 }
 
 .btn-salvar {
