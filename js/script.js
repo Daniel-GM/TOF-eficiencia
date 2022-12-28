@@ -1,95 +1,88 @@
-let elmo = new Map()
-let ombreira = new Map()
-let bracadeira = new Map()
-let cinto = new Map()
-let peitoral = new Map()
-let calca = new Map()
+let elmo = {
+  'AtkThunder': 359,
+  'AtkIce': 0,
+  'AtkFire': 52,
+  'AtkPhy': 0,
+  'ThunderAtk': 500,
+  'IceAtk': 0,
+  'FireAtk': 683,
+  'PhyAtk': 0
+}
+let ombreira = {
+  'AtkThunder': 850,
+  'AtkIce': 0,
+  'AtkFire': 850,
+  'AtkPhy': 0,
+  'ThunderAtk': 364,
+  'IceAtk': 0,
+  'FireAtk': 0,
+  'PhyAtk': 0
+}
+let bracadeira = {
+  'AtkThunder': 275,
+  'AtkIce': 0,
+  'AtkFire': 0,
+  'AtkPhy': 0,
+  'ThunderAtk': 0,
+  'IceAtk': 0,
+  'FireAtk': 800,
+  'PhyAtk': 0
+}
+let cinto = {
+  'AtkThunder': 261,
+  'AtkIce': 0,
+  'AtkFire': 354,
+  'AtkPhy': 0,
+  'ThunderAtk': 479,
+  'IceAtk': 0,
+  'FireAtk': 378,
+  'PhyAtk': 0
+}
+let peitoral = {
+  'AtkThunder': 358,
+  'AtkIce': 0,
+  'AtkFire': 464,
+  'AtkPhy': 0,
+  'ThunderAtk': 502,
+  'IceAtk': 0,
+  'FireAtk': 439,
+  'PhyAtk': 0
+}
+let calca = {
+  'AtkThunder': 231,
+  'AtkIce': 0,
+  'AtkFire': 270,
+  'AtkPhy': 0,
+  'ThunderAtk': 709,
+  'IceAtk': 0,
+  'FireAtk': 519,
+  'PhyAtk': 0
+}
 
-elmo.set('AtkThunder', 359)
-elmo.set('AtkIce', 0)
-elmo.set('AtkFire', 52)
-elmo.set('AtkPhy', 0)
-elmo.set('ThunderAtk', 500)
-elmo.set('IceAtk', 0)
-elmo.set('FireAtk', 683)
-elmo.set('PhyAtk', 0)
-
-ombreira.set('AtkThunder', 850)
-ombreira.set('AtkIce', 0)
-ombreira.set('AtkFire', 850)
-ombreira.set('AtkPhy', 0)
-ombreira.set('ThunderAtk', 364)
-ombreira.set('IceAtk', 0)
-ombreira.set('FireAtk', 0)
-ombreira.set('PhyAtk', 0)
-
-bracadeira.set('AtkThunder', 275)
-bracadeira.set('AtkIce', 0)
-bracadeira.set('AtkFire', 0)
-bracadeira.set('AtkPhy', 0)
-bracadeira.set('ThunderAtk', 0)
-bracadeira.set('IceAtk', 0)
-bracadeira.set('FireAtk', 800)
-bracadeira.set('PhyAtk', 0)
-
-cinto.set('AtkThunder', 261)
-cinto.set('AtkIce', 0)
-cinto.set('AtkFire', 354)
-cinto.set('AtkPhy', 0)
-cinto.set('ThunderAtk', 479)
-cinto.set('IceAtk', 0)
-cinto.set('FireAtk', 378)
-cinto.set('PhyAtk', 0)
-
-peitoral.set('AtkThunder', 358)
-peitoral.set('AtkIce', 0)
-peitoral.set('AtkFire', 464)
-peitoral.set('AtkPhy', 0)
-peitoral.set('ThunderAtk', 502)
-peitoral.set('IceAtk', 0)
-peitoral.set('FireAtk', 439)
-peitoral.set('PhyAtk', 0)
-
-calca.set('AtkThunder', 231)
-calca.set('AtkIce', 0)
-calca.set('AtkFire', 270)
-calca.set('AtkPhy', 0)
-calca.set('ThunderAtk', 709)
-calca.set('IceAtk', 0)
-calca.set('FireAtk', 519)
-calca.set('PhyAtk', 0)
-
-let equipamentos = [elmo, ombreira, bracadeira, cinto, peitoral, calca]
-
-function printaTela(equipamentos){
+function printaTela(){
   let elemento = $('.elemento:checked')[0]['id']
   let atkElemento = getEAtk(elemento)
   
-  /* elmo */
-  $('.elmo .atk').html(equipamentos[0].get(atkElemento))
-  $('.elmo .e-atk').html(equipamentos[0].get(elemento))
-  
+  /* elmo */  
+  $('.elmo .atk').html(elmo[atkElemento])
+  $('.elmo .e-atk').html(elmo[elemento])
   /* ombreira */
-  $('.ombreira .atk').html(equipamentos[1].get(atkElemento))
-  $('.ombreira .e-atk').html(equipamentos[1].get(elemento))
-
+  $('.ombreira .atk').html(ombreira[atkElemento])
+  $('.ombreira .e-atk').html(ombreira[elemento])
   /* braçadeira */  
-  $('.bracadeira .atk').html(equipamentos[2].get(atkElemento))
-  $('.bracadeira .e-atk').html(equipamentos[2].get(elemento))
-
+  $('.bracadeira .atk').html(bracadeira[atkElemento])
+  $('.bracadeira .e-atk').html(bracadeira[elemento])
   /* cinto */
-  $('.cinto .atk').html(equipamentos[3].get(atkElemento))
-  $('.cinto .e-atk').html(equipamentos[3].get(elemento))
-
+  $('.cinto .atk').html(cinto[atkElemento])
+  $('.cinto .e-atk').html(cinto[elemento])
   /* peitoral */
-  $('.peitoral .atk').html(equipamentos[4].get(atkElemento))
-  $('.peitoral .e-atk').html(equipamentos[4].get(elemento))
-  
+  $('.peitoral .atk').html(peitoral[atkElemento])
+  $('.peitoral .e-atk').html(peitoral[elemento])
   /* calça */
-  $('.calca .atk').html(equipamentos[5].get(atkElemento))
-  $('.calca .e-atk').html(equipamentos[5].get(elemento))
+  $('.calca .atk').html(calca[atkElemento])
+  $('.calca .e-atk').html(calca[elemento])
 
-  calculoEficiencia(equipamentos, atkElemento, elemento)
+  calculoEficiencia(atkElemento, elemento)
 }
 
 function zeraValor(response){
@@ -99,15 +92,14 @@ function zeraValor(response){
     return response
 }
 
-/* porcentagens */
-function calculoEficiencia(listaItens, atkElemento, elemento){
-  console.log(listaItens)
+function calculoEficiencia(atkElemento, elemento){
+  let listaItens = [elmo, ombreira, bracadeira, cinto, peitoral, calca]
   let listaClasse = [".barra-elmo", ".barra-ombreira", ".barra-bracadeira", ".barra-cinto", ".barra-peitoral", ".barra-calca", ]
   let atk, atkE, soma, somaTotal=0
   const maxAtk = 1681
   for(let i=0; i<6; i++){
-    atk = zeraValor(listaItens[i].get(atkElemento))
-    atkE = zeraValor(listaItens[i].get(elemento))
+    atk = zeraValor(listaItens[i][atkElemento])
+    atkE = zeraValor(listaItens[i][elemento])
     soma = (((atk + atkE)*100)/maxAtk)
     somaTotal = soma + somaTotal
     
@@ -122,7 +114,7 @@ function calculoEficiencia(listaItens, atkElemento, elemento){
 }
 
 $('.elemento').click(() => {
-  printaTela(equipamentos)
+  printaTela()
 })  
 
 function getEAtk(elemento){
@@ -151,25 +143,32 @@ function editaEquipamento(id){
 function salvaStatus(){
   let elemento = $('.elemento:checked')[0]['id']
   let equipamentoModal = $('.equipamento-modal')[0]['src']
-  let escolha
 
   equipamentoModal = equipamentoModal.replace('http://127.0.0.1:3000/img/equipamentos/', '')
   equipamentoModal = equipamentoModal.replace('.webp', '')
   
-  if(equipamentoModal == 'elmo') escolha = 0
-  if(equipamentoModal == 'ombreira') escolha = 1
-  if(equipamentoModal == 'bracadeira') escolha = 2
-  if(equipamentoModal == 'cinto') escolha = 3
-  if(equipamentoModal == 'peitoral') escolha = 4
-  if(equipamentoModal == 'calca') escolha = 5
+  if(equipamentoModal == 'elmo') 
+    setStatus(elmo, elemento)
+  else if(equipamentoModal == 'ombreira') 
+    setStatus(ombreira, elemento)
+  else if(equipamentoModal == 'bracadeira')
+    setStatus(bracadeira, elemento)
+  else if(equipamentoModal == 'cinto')
+    setStatus(cinto, elemento)
+  else if(equipamentoModal == 'peitoral')
+    setStatus(peitoral, elemento)
+  else if(equipamentoModal == 'calca')
+    setStatus(calca, elemento)
+}
 
-  equipamentos[escolha].set(elemento, Number($('.text-atk-e').val()))
-  equipamentos[escolha].set(getEAtk(elemento), Number($('.text-atk').val()))
+function setStatus(peca, elemento){
+  peca[elemento] = Number($('.text-atk-e').val())
+  peca[getEAtk(elemento)] = Number($('.text-atk').val())
 
   $('.text-atk').val('')
   $('.text-atk-e').val('')
 
-  printaTela(equipamentos)
+  printaTela()
 }
 
 /*
