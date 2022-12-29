@@ -1,15 +1,15 @@
-[v]digitar o UID
-
 [v]selecionar o elemento
 
-[+]selecionar o personagem
+[v]eficiencia de dano
+
+[v]modal para edição
 
 [+]calculadora de itens
 
-[+]preview de itens crit
+[+]eficiencia de crit
 
-[+]calculadora de item bélico
+[+]eficiencia do item bélico
 
 [+]criação de login
 
-[+]graficos com Power BI
+[+]graficos de eficiencia
