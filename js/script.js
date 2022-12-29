@@ -173,11 +173,18 @@ function editaEquipamento(id){
   if($('.elemento:checked')[0] == undefined)
     alert('Selecione um elemento')
   else{
+    $('#fade').fadeToggle(200)
     let elemento = $('.elemento:checked')[0]['id']
     id = id.replace('editar-', '')
     $('.equipamento-modal').attr('src',$('.'+id+' .equip-img')[0]['src'])
     $('.img-atk-e').attr('src','img/status/'+elemento+'.webp')
   }
+}
+
+function cancelarStatus(){
+  $('#fade').fadeToggle(200)
+  $('.text-atk').val('')
+  $('.text-atk-e').val('')
 }
 
 function salvaStatus(){
@@ -215,9 +222,7 @@ function setStatus(peca, elemento, equipamentoModal){
   localStorage.setItem(equipamentoModal, JSON.stringify(peca))
   console.log(localStorage.getItem(equipamentoModal))
   
-  $('.text-atk').val('')
-  $('.text-atk-e').val('')
-
+  cancelarStatus()
   printaTela()
 }
 
