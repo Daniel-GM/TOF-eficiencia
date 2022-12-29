@@ -58,7 +58,8 @@ let calca = {
   'FireAtk': 0,
   'PhyAtk': 0
 }
-let inicia = 0
+
+// $('.elemento:checked')[0][localStorage.getItem('elemento')]
 
 function printaTela(){
   let elemento = $('.elemento:checked')[0]['id']
@@ -154,6 +155,8 @@ function calculoEficiencia(atkElemento, elemento){
 }
 
 $('.elemento').click(() => {
+  console.log($('.elemento:checked')[0]['id'])
+  localStorage.setItem('elemento', $('.elemento:checked')[0]['id'])
   printaTela()
 })  
 
@@ -226,12 +229,13 @@ function setStatus(peca, elemento, equipamentoModal){
   printaTela()
 }
 
-/*
-helmet - elmo - 384 - 582 - 57%
-spaulders - ombreira - 360 - 332 - 41%
-bracers - braçadeira - 769 - 69 - 50%
-belt - cinto - 378 - 544 - 55%
-armor - peitoral - 0 - 640 - 38%
-leggguards - calca - 510 - 244 - 45%
-*/
-
+function editaCritico(id){
+  if($('.elemento:checked')[0] == undefined)
+    alert('Selecione um elemento')
+  else{
+    $('#crit').fadeToggle(200)
+    let elemento = $('.elemento:checked')[0]['id']
+    id = id.replace('editar-', '')
+    $('.crit-modal').attr('src',$('.'+id+' .equip-img')[0]['src'])
+  }
+}
