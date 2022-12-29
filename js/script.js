@@ -184,7 +184,8 @@ function salvaStatus(){
   let elemento = $('.elemento:checked')[0]['id']
   let equipamentoModal = $('.equipamento-modal')[0]['src']
 
-  equipamentoModal = equipamentoModal.replace('http://127.0.0.1:3000/img/equipamentos/', '')
+
+  equipamentoModal = equipamentoModal.replace(window.location.href+'img/equipamentos/', '')
   equipamentoModal = equipamentoModal.replace('.webp', '')
   
   if(equipamentoModal == 'elmo') 
