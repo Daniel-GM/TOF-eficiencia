@@ -4,6 +4,8 @@
 
 [v]modal para edição
 
+[v]versão mobile
+
 [+]calculadora de itens
 
 [+]eficiencia de crit

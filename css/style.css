@@ -3,7 +3,7 @@ html, body{
   padding: 0px;
   margin: 0px;
   font-family: Noto Sans KR,sans-serif;
-  background-color: red;
+  background-color: #1b1b1b;
   font-size: 1.1rem;
   font-weight: 600;
   color: #fff;
@@ -338,4 +338,19 @@ div.barra-total{
 .cancelar-editar {
   color: red;
   border: 2px solid red;
+}
+
+@media screen and (max-width: 800px){
+  .equipamento, .equipamento2 {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .itens-modal{
+    width: 85%;
+  }
+  .status{
+    font-size: 0.8rem;
+    text-align: center;
+  }
 }
