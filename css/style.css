@@ -152,7 +152,7 @@ div.weapons{
 
 .equips{
   background-color: #1b1b1b;
-  padding: 1%;
+  padding: 1% 0%;
   display: flex;
   flex-wrap: wrap;
   margin-top: 2%;
@@ -160,6 +160,7 @@ div.weapons{
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+  justify-content: space-between;
 }
 
 .equipamento, .equipamento2{
@@ -171,7 +172,7 @@ div.weapons{
   display: flex;
   align-items: center;
   width: 48%;
-  margin-bottom: 0.4rem;
+  margin-bottom: 1rem;
   margin-right: 0.4rem;
 }
 

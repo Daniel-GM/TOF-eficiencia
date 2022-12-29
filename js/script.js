@@ -185,7 +185,13 @@ function salvaStatus(){
   let equipamentoModal = $('.equipamento-modal')[0]['src']
 
 
-  equipamentoModal = equipamentoModal.replace(window.location.href+'img/equipamentos/', '')
+  let link = window.location.href
+  
+  if(link == 'http://127.0.0.1:3000/index.html'){
+    link = link.replace('index.html', '')
+  }
+
+  equipamentoModal = equipamentoModal.replace(link+'img/equipamentos/', '')
   equipamentoModal = equipamentoModal.replace('.webp', '')
   
   if(equipamentoModal == 'elmo') 
