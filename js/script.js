@@ -95,6 +95,16 @@ function geraJSON(){
   $('#json').attr("textContent", "Download backup.json")
 }
 
+function pegaJSON(){
+  const importJSON = $('.import-JSON')
+  console.log(importJSON)
+  // const reader = new FileReader();
+  // reader.readAsDataURL(meuImput.files[0]);
+  // reader.onload = function () {
+  //   console.log(reader.result);
+  // };
+}
+
 if(localStorage.getItem('elemento') == 'ThunderAtk'){
   $('input[id=ThunderAtk]').attr('checked', 'checked')
   printaTela()
