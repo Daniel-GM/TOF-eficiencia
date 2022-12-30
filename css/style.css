@@ -45,6 +45,11 @@ label .elementos{
   flex-direction: row;
   justify-content: center;
   opacity: 50%;
+  cursor: pointer;
+}
+
+label .elementos:hover{
+  opacity: 75%; 
 }
 
 label .conf-equipamentos{
@@ -188,12 +193,12 @@ div.weapons{
   flex-direction: column;
 }
 
-.elmo, .ombreira, .bracadeira, .cinto, .peitoral, .calca{
+.elmo, .ombreira, .bracadeira, .cinto, .peitoral, .calca, .luva, .bota{
   display: flex;
   align-items: center;
 }
 
-.ataque, .e-ataque, .img-atk, .img-atk-e{
+.ataque, .e-ataque, .img-atk, .img-atk-e, .crit{
   display: flex;
   align-items: center;
   padding: 5px;
@@ -245,7 +250,8 @@ div.barra-total{
 }
 
 /* modal */
-#fade{
+#fade,
+#crit{
   transition: 0,5s;
   position: fixed;
   top: 0;
@@ -338,4 +344,32 @@ div.barra-total{
 .cancelar-editar {
   color: red;
   border: 2px solid red;
+}
+
+.dados {
+  width: 100%;
+}
+
+img.equip-crit-img {
+  padding-left: 5%;
+  width: 55%;
+}
+
+.icon-crit{
+  width: 30%;
+}
+
+@media screen and (max-width: 800px){
+  .equipamento, .equipamento2 {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .itens-modal{
+    width: 85%;
+  }
+  .status{
+    font-size: 0.8rem;
+    text-align: center;
+  }
 }
