@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TOF API</title>
+  <title>TOF Eficiência</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
         <div class="dados">
           <div class="elmo">
             <div class="status">
-              <span>Eficiência total dos equipamentos:</span>
+              <span class="total-ataque"></span>
             </div>
           </div>
         </div>
@@ -235,16 +235,16 @@
   </section>
 
   <!-- CRITICO -->
-  <section class="status-full">
+  <section class="status-full status-full-crit">
     <div class="equips-full">
       <div class="dados">
         <div class="elmo">
           <div class="status">
-            <span>Eficiência total de Critico:</span>
+            <span class="total-critico">Eficiência total de Critico:</span>
           </div>
         </div>
       </div>
-      <div class="barra barra-total">
+      <div class="barra barra-total barra-total-crit">
         <div class="eficiencia"></div>
         <div class="porcentagem"></div>
       </div>
@@ -306,10 +306,10 @@
             <input type="text" class="text-crit">
           </div>
           <div class="btn-salvar">
-            <button type="submit" class="salvar-editar" onclick="salvaStatus()"><i class="fa fa-save"></i> Salvar</button>
+            <button type="submit" class="salvar-editar" onclick="salvarCrit()"><i class="fa fa-save"></i> Salvar</button>
           </div>
           <div class="btn-cancelar">
-            <button type="submit" class="cancelar-editar" onclick="cancelarStatus()"><i class="fa fa-times"></i> Cancelar</button>
+            <button type="submit" class="cancelar-editar" onclick="cancelarCrit()"><i class="fa fa-times"></i> Cancelar</button>
           </div>
         </div>
       </div>

@@ -8,10 +8,10 @@
 
 [+]calculadora de itens
 
-[+]eficiencia de crit
+[v]eficiencia de crit
 
 [+]eficiencia do item bélico
 
 [+]criação de login
-
+git sta
 [+]graficos de eficiencia

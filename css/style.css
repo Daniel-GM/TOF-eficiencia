@@ -198,7 +198,7 @@ div.weapons{
   align-items: center;
 }
 
-.ataque, .e-ataque, .img-atk, .img-atk-e{
+.ataque, .e-ataque, .img-atk, .img-atk-e, .crit{
   display: flex;
   align-items: center;
   padding: 5px;
@@ -356,7 +356,7 @@ img.equip-crit-img {
 }
 
 .icon-crit{
-  width: 50%;
+  width: 30%;
 }
 
 @media screen and (max-width: 800px){
