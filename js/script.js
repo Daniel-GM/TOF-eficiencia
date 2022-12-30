@@ -73,15 +73,23 @@ let luva = {
   'PhyCrit': 0
 }
 
-if(localStorage.getItem('elemento') == 'ThunderAtk')
+if(localStorage.getItem('elemento') == 'ThunderAtk'){
   $('input[id=ThunderAtk]').attr('checked', 'checked')
-else if(localStorage.getItem('elemento') == 'IceAtk')
+  printaTela()
+}
+else if(localStorage.getItem('elemento') == 'IceAtk'){
   $('input[id=IceAtk]').attr('checked', 'checked')
-else if(localStorage.getItem('elemento') == 'FireAtk')
+  printaTela()
+}
+else if(localStorage.getItem('elemento') == 'FireAtk'){
   $('input[id=FireAtk]').attr('checked', 'checked')
-else if(localStorage.getItem('elemento') == 'PhyAtk')
+  printaTela()
+}
+else if(localStorage.getItem('elemento') == 'PhyAtk'){
   $('input[id=PhyAtk]').attr('checked', 'checked')
-printaTela()
+  printaTela()
+}
+
 
 function printaTela(){
   let elemento = $('.elemento:checked')[0]['id']
