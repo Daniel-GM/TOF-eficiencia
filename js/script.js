@@ -73,6 +73,28 @@ let luva = {
   'PhyCrit': 0
 }
 
+function geraJSON(){
+  let arrayJSON = [
+    localStorage.getItem('elmo'),
+    localStorage.getItem('ombreira'),
+    localStorage.getItem('bracadeira'),
+    localStorage.getItem('cinto'),
+    localStorage.getItem('peitoral'),
+    localStorage.getItem('calca'),
+    localStorage.getItem('bota'),
+    localStorage.getItem('luva')
+  ]
+
+  let stringJSON = JSON.stringify(arrayJSON)
+  var blob = new Blob([stringJSON], {type: "application/json"})
+  var url  = URL.createObjectURL(blob)
+  console.log(url)
+  
+  $('#json').attr("href", url)
+  $('#json').attr("download", "backup-eficiencia.json")
+  $('#json').attr("textContent", "Download backup.json")
+}
+
 if(localStorage.getItem('elemento') == 'ThunderAtk'){
   $('input[id=ThunderAtk]').attr('checked', 'checked')
   printaTela()
@@ -92,6 +114,7 @@ else if(localStorage.getItem('elemento') == 'PhyAtk'){
 
 
 function printaTela(){
+  geraJSON()
   let elemento = $('.elemento:checked')[0]['id']
   let atkElemento = getEAtk(elemento)
   let crit = getCrit(elemento)

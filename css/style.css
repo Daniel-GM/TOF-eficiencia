@@ -332,13 +332,26 @@ div.barra-total{
   padding: .3rem 0;
 }
 
-.salvar-editar, .cancelar-editar {
+.salvar-editar, .cancelar-editar, #json {
   width: 50%;
   border: 2px solid #fff;
   background-color: #161616;
   color: #fff;
   padding: 5px;
   border-radius: 200px;
+}
+
+.backup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#json{
+  width: 20%;
+  margin-bottom: 20px;
+  text-decoration: none;
+  text-align: center;
 }
 
 .cancelar-editar {
@@ -371,5 +384,8 @@ img.equip-crit-img {
   .status{
     font-size: 0.8rem;
     text-align: center;
+  }
+  #json{
+    width: 40%;
   }
 }
