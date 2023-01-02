@@ -73,38 +73,6 @@ let luva = {
   'PhyCrit': 0
 }
 
-function geraJSON(){
-  let arrayJSON = [
-    localStorage.getItem('elmo'),
-    localStorage.getItem('ombreira'),
-    localStorage.getItem('bracadeira'),
-    localStorage.getItem('cinto'),
-    localStorage.getItem('peitoral'),
-    localStorage.getItem('calca'),
-    localStorage.getItem('bota'),
-    localStorage.getItem('luva')
-  ]
-
-  let stringJSON = JSON.stringify(arrayJSON)
-  var blob = new Blob([stringJSON], {type: "application/json"})
-  var url  = URL.createObjectURL(blob)
-  console.log(url)
-  
-  $('#json').attr("href", url)
-  $('#json').attr("download", "backup-eficiencia.json")
-  $('#json').attr("textContent", "Download backup.json")
-}
-
-function pegaJSON(){
-  const importJSON = $('.import-JSON')
-  console.log(importJSON)
-  // const reader = new FileReader();
-  // reader.readAsDataURL(meuImput.files[0]);
-  // reader.onload = function () {
-  //   console.log(reader.result);
-  // };
-}
-
 if(localStorage.getItem('elemento') == 'ThunderAtk'){
   $('input[id=ThunderAtk]').attr('checked', 'checked')
   printaTela()
@@ -369,4 +337,46 @@ function setCrit(peca, elemento, equipamentoModal){
   
   cancelarCrit()
   printaTela()
+}
+
+function geraJSON(){
+  let arrayJSON = [
+    localStorage.getItem('elmo'),
+    localStorage.getItem('ombreira'),
+    localStorage.getItem('bracadeira'),
+    localStorage.getItem('cinto'),
+    localStorage.getItem('peitoral'),
+    localStorage.getItem('calca'),
+    localStorage.getItem('bota'),
+    localStorage.getItem('luva')
+  ]
+
+  let stringJSON = JSON.stringify(arrayJSON)
+  var blob = new Blob([stringJSON], {type: "application/json"})
+  var url  = URL.createObjectURL(blob)
+    
+  $('#json').attr("href", url)
+  $('#json').attr("download", "backup-eficiencia.json")
+  $('#json').attr("textContent", "Download backup.json")
+}
+
+function lerJSON() {
+  const [file] = document.querySelector('input[type=file]').files
+  const reader = new FileReader()
+  const itens = ['elmo', 'ombreira', 'bracadeira', 'cinto', 'peitoral', 'calca', 'bota', 'luva']
+
+  reader.addEventListener("load", () => {
+    lista = JSON.parse(reader.result)
+    for(i=0; i<itens.length; i++){
+      importBackup(itens[i], lista[i])
+    }
+    printaTela()
+  }, false)
+  if (file) {
+    reader.readAsText(file)
+  }
+}
+
+function importBackup(equipamento, status){
+  localStorage.setItem(equipamento, status)
 }
