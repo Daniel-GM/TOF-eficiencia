@@ -311,7 +311,7 @@ div.barra-total{
   padding-bottom: 2rem;
 }
 
-.text-atk-e, .text-atk{
+.text-atk-e, .text-atk, .text-crit{
   width: 100%;
   text-align: center;
 }
