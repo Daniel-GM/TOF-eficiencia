@@ -58,14 +58,12 @@ let calca = {
   'FireAtk': 0,
   'PhyAtk': 0
 }
-
 let bota = {
   'ThunderCrit': 0,
   'IceCrit': 0,
   'FireCrit': 0,
   'PhyCrit': 0
 }
-
 let luva = {
   'ThunderCrit': 0,
   'IceCrit': 0,
@@ -89,7 +87,6 @@ else if(localStorage.getItem('elemento') == 'PhyAtk'){
   $('input[id=PhyAtk]').attr('checked', 'checked')
   printaTela()
 }
-
 
 function printaTela(){
   geraJSON()
@@ -256,25 +253,32 @@ function salvaStatus(){
   if(link == 'http://127.0.0.1:3000/index.html'){
     link = link.replace('index.html', '')
   }
-
   equipamentoModal = equipamentoModal.replace(link+'img/equipamentos/', '')
   equipamentoModal = equipamentoModal.replace('.webp', '')
   
-  if(equipamentoModal == 'elmo') 
-    setStatus(elmo, elemento, equipamentoModal)
-  else if(equipamentoModal == 'ombreira') 
-    setStatus(ombreira, elemento, equipamentoModal)
-  else if(equipamentoModal == 'bracadeira')
-    setStatus(bracadeira, elemento, equipamentoModal)
-  else if(equipamentoModal == 'cinto')
-    setStatus(cinto, elemento, equipamentoModal)
-  else if(equipamentoModal == 'peitoral')
-    setStatus(peitoral, elemento, equipamentoModal)
-  else if(equipamentoModal == 'calca')
-    setStatus(calca, elemento, equipamentoModal)
+  if(equipamentoModal == 'elmo') {
+    let peca = JSON.parse(localStorage.getItem('elmo'))
+    setStatus(peca, elemento, equipamentoModal)
+  }  else if(equipamentoModal == 'ombreira') {
+    let peca = JSON.parse(localStorage.getItem('ombreira'))
+    setStatus(peca, elemento, equipamentoModal)
+  }  else if(equipamentoModal == 'bracadeira'){
+    let peca = JSON.parse(localStorage.getItem('bracadeira'))
+    setStatus(peca, elemento, equipamentoModal)
+  }  else if(equipamentoModal == 'cinto'){
+    let peca = JSON.parse(localStorage.getItem('cinto'))
+    setStatus(peca, elemento, equipamentoModal)
+  }  else if(equipamentoModal == 'peitoral'){
+    let peca = JSON.parse(localStorage.getItem('peitoral'))
+    setStatus(peca, elemento, equipamentoModal)
+  }  else if(equipamentoModal == 'calca'){
+    let peca = JSON.parse(localStorage.getItem('calca'))
+    setStatus(peca, elemento, equipamentoModal)
+  }
 }
 
 function setStatus(peca, elemento, equipamentoModal){
+  debugger
   peca[elemento] = Number($('.text-atk-e').val())
   peca[getEAtk(elemento)] = Number($('.text-atk').val())
 
@@ -324,10 +328,14 @@ function salvarCrit(){
   equipamentoModal = equipamentoModal.replace(link+'img/equipamentos/', '')
   equipamentoModal = equipamentoModal.replace('.png', '')
 
-  if(equipamentoModal == 'bota') 
-    setCrit(bota, elemento, equipamentoModal)
-  else if(equipamentoModal == 'luva') 
-    setCrit(luva, elemento, equipamentoModal)
+  if(equipamentoModal == 'bota') {
+    let peca = JSON.parse(localStorage.getItem('bota'))
+    setCrit(peca, elemento, equipamentoModal)
+  }
+  else if(equipamentoModal == 'luva') {
+    let peca = JSON.parse(localStorage.getItem('luva'))
+    setCrit(peca, elemento, equipamentoModal)
+  }
 }
 
 function setCrit(peca, elemento, equipamentoModal){
