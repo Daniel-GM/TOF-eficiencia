@@ -332,7 +332,7 @@ div.barra-total{
   padding: .3rem 0;
 }
 
-.salvar-editar, .cancelar-editar, #json {
+.salvar-editar, .cancelar-editar, #json, .ler-label {
   width: 50%;
   border: 2px solid #fff;
   background-color: #161616;
@@ -347,7 +347,7 @@ div.barra-total{
   align-items: center;
 }
 
-#json{
+#json, .ler-label{
   width: 20%;
   margin-bottom: 20px;
   text-decoration: none;
@@ -372,6 +372,14 @@ img.equip-crit-img {
   width: 30%;
 }
 
+input#ler-JSON {
+  display: none
+}
+
+.ler-label {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 800px){
   .equipamento, .equipamento2 {
     width: 100%;
@@ -385,7 +393,7 @@ img.equip-crit-img {
     font-size: 0.8rem;
     text-align: center;
   }
-  #json{
+  #json, .ler-label{
     width: 40%;
   }
 }
