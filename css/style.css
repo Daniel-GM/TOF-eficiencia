@@ -311,7 +311,7 @@ div.barra-total{
   padding-bottom: 2rem;
 }
 
-.text-atk-e, .text-atk{
+.text-atk-e, .text-atk, .text-crit{
   width: 100%;
   text-align: center;
 }
@@ -332,13 +332,26 @@ div.barra-total{
   padding: .3rem 0;
 }
 
-.salvar-editar, .cancelar-editar {
+.salvar-editar, .cancelar-editar, #json, .ler-label {
   width: 50%;
   border: 2px solid #fff;
   background-color: #161616;
   color: #fff;
   padding: 5px;
   border-radius: 200px;
+}
+
+.backup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#json, .ler-label{
+  width: 20%;
+  margin-bottom: 20px;
+  text-decoration: none;
+  text-align: center;
 }
 
 .cancelar-editar {
@@ -359,6 +372,14 @@ img.equip-crit-img {
   width: 30%;
 }
 
+input#ler-JSON {
+  display: none
+}
+
+.ler-label {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 800px){
   .equipamento, .equipamento2 {
     width: 100%;
@@ -371,5 +392,8 @@ img.equip-crit-img {
   .status{
     font-size: 0.8rem;
     text-align: center;
+  }
+  #json, .ler-label{
+    width: 40%;
   }
 }

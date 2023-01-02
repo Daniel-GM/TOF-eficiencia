@@ -10,6 +10,8 @@
 
 [v]eficiencia de crit
 
+[v]backup dos dados
+
 [+]eficiencia do item bélico
 
 [+]criação de login

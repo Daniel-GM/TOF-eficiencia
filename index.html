@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
   <div class="uid">
     <div class="card-uid">
       <div class="radio-uid">
@@ -295,6 +294,15 @@
     </div>
   </section>
 
+  <div class="backup">
+    <a id="json"><i class="fa fa-cloud-download"></i> Backup</a>
+  </div>
+
+  <div class="backup import">
+    <label for="ler-JSON" class="ler-label"><i class="fa fa-cloud-upload"></i> Import</label>
+    <input id="ler-JSON" type="file" onchange="lerJSON()"/>
+  </div>
+
   <section class="modal-crit">
     <div id="crit">
     <div class="modal">
@@ -316,9 +324,11 @@
     </div>
     </div>
   </section>
+  
 
   <script src="https://use.fontawesome.com/62e43a72a9.js"></script>
   <script src="js/script.js"></script>
+
 </body>
 
 </html>

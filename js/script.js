@@ -58,14 +58,12 @@ let calca = {
   'FireAtk': 0,
   'PhyAtk': 0
 }
-
 let bota = {
   'ThunderCrit': 0,
   'IceCrit': 0,
   'FireCrit': 0,
   'PhyCrit': 0
 }
-
 let luva = {
   'ThunderCrit': 0,
   'IceCrit': 0,
@@ -90,8 +88,8 @@ else if(localStorage.getItem('elemento') == 'PhyAtk'){
   printaTela()
 }
 
-
 function printaTela(){
+  geraJSON()
   let elemento = $('.elemento:checked')[0]['id']
   let atkElemento = getEAtk(elemento)
   let crit = getCrit(elemento)
@@ -255,22 +253,28 @@ function salvaStatus(){
   if(link == 'http://127.0.0.1:3000/index.html'){
     link = link.replace('index.html', '')
   }
-
   equipamentoModal = equipamentoModal.replace(link+'img/equipamentos/', '')
   equipamentoModal = equipamentoModal.replace('.webp', '')
   
-  if(equipamentoModal == 'elmo') 
-    setStatus(elmo, elemento, equipamentoModal)
-  else if(equipamentoModal == 'ombreira') 
-    setStatus(ombreira, elemento, equipamentoModal)
-  else if(equipamentoModal == 'bracadeira')
-    setStatus(bracadeira, elemento, equipamentoModal)
-  else if(equipamentoModal == 'cinto')
-    setStatus(cinto, elemento, equipamentoModal)
-  else if(equipamentoModal == 'peitoral')
-    setStatus(peitoral, elemento, equipamentoModal)
-  else if(equipamentoModal == 'calca')
-    setStatus(calca, elemento, equipamentoModal)
+  if(equipamentoModal == 'elmo') {
+    let peca = JSON.parse(localStorage.getItem('elmo'))
+    setStatus(peca, elemento, equipamentoModal)
+  }  else if(equipamentoModal == 'ombreira') {
+    let peca = JSON.parse(localStorage.getItem('ombreira'))
+    setStatus(peca, elemento, equipamentoModal)
+  }  else if(equipamentoModal == 'bracadeira'){
+    let peca = JSON.parse(localStorage.getItem('bracadeira'))
+    setStatus(peca, elemento, equipamentoModal)
+  }  else if(equipamentoModal == 'cinto'){
+    let peca = JSON.parse(localStorage.getItem('cinto'))
+    setStatus(peca, elemento, equipamentoModal)
+  }  else if(equipamentoModal == 'peitoral'){
+    let peca = JSON.parse(localStorage.getItem('peitoral'))
+    setStatus(peca, elemento, equipamentoModal)
+  }  else if(equipamentoModal == 'calca'){
+    let peca = JSON.parse(localStorage.getItem('calca'))
+    setStatus(peca, elemento, equipamentoModal)
+  }
 }
 
 function setStatus(peca, elemento, equipamentoModal){
@@ -299,9 +303,9 @@ function editaCritico(id){
     alert('Selecione um elemento')
   else{
     $('#crit').fadeToggle(200)
-    let elemento = $('.elemento:checked')[0]['id']
     id = id.replace('editar-', '')
     $('.crit-modal').attr('src',$('.'+id+' .equip-img')[0]['src'])
+    $('.img-atk-e').attr('src','img/status/critico.png')
   }
 }
 
@@ -323,10 +327,14 @@ function salvarCrit(){
   equipamentoModal = equipamentoModal.replace(link+'img/equipamentos/', '')
   equipamentoModal = equipamentoModal.replace('.png', '')
 
-  if(equipamentoModal == 'bota') 
-    setCrit(bota, elemento, equipamentoModal)
-  else if(equipamentoModal == 'luva') 
-    setCrit(luva, elemento, equipamentoModal)
+  if(equipamentoModal == 'bota') {
+    let peca = JSON.parse(localStorage.getItem('bota'))
+    setCrit(peca, elemento, equipamentoModal)
+  }
+  else if(equipamentoModal == 'luva') {
+    let peca = JSON.parse(localStorage.getItem('luva'))
+    setCrit(peca, elemento, equipamentoModal)
+  }
 }
 
 function setCrit(peca, elemento, equipamentoModal){
@@ -336,4 +344,46 @@ function setCrit(peca, elemento, equipamentoModal){
   
   cancelarCrit()
   printaTela()
+}
+
+function geraJSON(){
+  let arrayJSON = [
+    localStorage.getItem('elmo'),
+    localStorage.getItem('ombreira'),
+    localStorage.getItem('bracadeira'),
+    localStorage.getItem('cinto'),
+    localStorage.getItem('peitoral'),
+    localStorage.getItem('calca'),
+    localStorage.getItem('bota'),
+    localStorage.getItem('luva')
+  ]
+
+  let stringJSON = JSON.stringify(arrayJSON)
+  var blob = new Blob([stringJSON], {type: "application/json"})
+  var url  = URL.createObjectURL(blob)
+    
+  $('#json').attr("href", url)
+  $('#json').attr("download", "backup-eficiencia.json")
+  $('#json').attr("textContent", "Download backup.json")
+}
+
+function lerJSON() {
+  const [file] = document.querySelector('input[type=file]').files
+  const reader = new FileReader()
+  const itens = ['elmo', 'ombreira', 'bracadeira', 'cinto', 'peitoral', 'calca', 'bota', 'luva']
+
+  reader.addEventListener("load", () => {
+    lista = JSON.parse(reader.result)
+    for(i=0; i<itens.length; i++){
+      importBackup(itens[i], lista[i])
+    }
+    printaTela()
+  }, false)
+  if (file) {
+    reader.readAsText(file)
+  }
+}
+
+function importBackup(equipamento, status){
+  localStorage.setItem(equipamento, status)
 }
