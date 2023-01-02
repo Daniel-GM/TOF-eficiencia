@@ -304,9 +304,9 @@ function editaCritico(id){
     alert('Selecione um elemento')
   else{
     $('#crit').fadeToggle(200)
-    let elemento = $('.elemento:checked')[0]['id']
     id = id.replace('editar-', '')
     $('.crit-modal').attr('src',$('.'+id+' .equip-img')[0]['src'])
+    $('.img-atk-e').attr('src','img/status/critico.png')
   }
 }
 
