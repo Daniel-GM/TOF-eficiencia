@@ -278,7 +278,6 @@ function salvaStatus(){
 }
 
 function setStatus(peca, elemento, equipamentoModal){
-  debugger
   peca[elemento] = Number($('.text-atk-e').val())
   peca[getEAtk(elemento)] = Number($('.text-atk').val())
 
