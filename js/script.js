@@ -348,14 +348,14 @@ function salvarCrit(){
   if(equipamentoModal == 'bota') {
     let peca = JSON.parse(localStorage.getItem('bota'))
     if(peca == null)
-      setStatus(bota, elemento, equipamentoModal)  
+      setCrit(bota, elemento, equipamentoModal)  
     else
       setCrit(peca, elemento, equipamentoModal)
   }
   else if(equipamentoModal == 'luva') {
     let peca = JSON.parse(localStorage.getItem('luva'))
     if(peca == null)
-      setStatus(luva, elemento, equipamentoModal)  
+      setCrit(luva, elemento, equipamentoModal)  
     else 
       setCrit(peca, elemento, equipamentoModal)
   }
