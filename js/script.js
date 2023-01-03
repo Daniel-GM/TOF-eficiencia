@@ -71,85 +71,91 @@ let luva = {
   'PhyCrit': 0
 }
 
-if (localStorage.getItem('elemento') == 'ThunderAtk') {
-  $('input[id=ThunderAtk]').attr('checked', 'checked')
-  printaTela()
-}
-else if (localStorage.getItem('elemento') == 'IceAtk') {
-  $('input[id=IceAtk]').attr('checked', 'checked')
-  printaTela()
-}
-else if (localStorage.getItem('elemento') == 'FireAtk') {
-  $('input[id=FireAtk]').attr('checked', 'checked')
-  printaTela()
-}
-else if (localStorage.getItem('elemento') == 'PhyAtk') {
-  $('input[id=PhyAtk]').attr('checked', 'checked')
-  printaTela()
+$(`input[id=${localGet('menu-item')}]`).attr('checked', 'checked')
+$(`input[id=${localGet('elemento')}]`).attr('checked', 'checked')
+printaTela()
+
+function displayNone() {
+  $('.response').css('display', 'none')
+  $('.response-critico').css('display', 'none')
+  $('.response-JSON').css('display', 'none')
+  $('.response-grafico').css('display', 'none')
 }
 
 function printaTela() {
   geraJSON()
+  let menu = $('.menu-item:checked')[0]['id']
   let elemento = $('.elemento:checked')[0]['id']
   let atkElemento = getEAtk(elemento)
   let crit = getCrit(elemento)
 
-  if (typeof (localStorage.getItem('elmo')) == 'string') {
-    $('.elmo .atk').html(zeraValor(JSON.parse(localStorage.getItem('elmo'))[atkElemento]))
-    $('.elmo .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('elmo'))[elemento]))
+  displayNone()
+  if (menu == 'menu-atk') {
+    $('.response').css('display', 'block')
+  } else if (menu == 'menu-crit') {
+    $('.response-critico').css('display', 'block')
+  } else if (menu == 'menu-JSON') {
+    $('.response-JSON').css('display', 'block')
+  } else if (menu == 'menu-grafico') {
+    $('.response-grafico').css('display', 'block')
+  } 
+
+  if (typeof (localGet('elmo')) == 'string') {
+    $('.elmo .atk').html(zeraValor(JSON.parse(localGet('elmo'))[atkElemento]))
+    $('.elmo .e-atk').html(zeraValor(JSON.parse(localGet('elmo'))[elemento]))
   } else {
     $('.elmo .atk').html(0)
     $('.elmo .e-atk').html(0)
   }
 
-  if (typeof (localStorage.getItem('ombreira')) == 'string') {
-    $('.ombreira .atk').html(zeraValor(JSON.parse(localStorage.getItem('ombreira'))[atkElemento]))
-    $('.ombreira .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('ombreira'))[elemento]))
+  if (typeof (localGet('ombreira')) == 'string') {
+    $('.ombreira .atk').html(zeraValor(JSON.parse(localGet('ombreira'))[atkElemento]))
+    $('.ombreira .e-atk').html(zeraValor(JSON.parse(localGet('ombreira'))[elemento]))
   } else {
     $('.ombreira .atk').html(0)
     $('.ombreira .e-atk').html(0)
   }
 
-  if (typeof (localStorage.getItem('bracadeira')) == 'string') {
-    $('.bracadeira .atk').html(zeraValor(JSON.parse(localStorage.getItem('bracadeira'))[atkElemento]))
-    $('.bracadeira .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('bracadeira'))[elemento]))
+  if (typeof (localGet('bracadeira')) == 'string') {
+    $('.bracadeira .atk').html(zeraValor(JSON.parse(localGet('bracadeira'))[atkElemento]))
+    $('.bracadeira .e-atk').html(zeraValor(JSON.parse(localGet('bracadeira'))[elemento]))
   } else {
     $('.bracadeira .atk').html(0)
     $('.bracadeira .e-atk').html(0)
   }
 
-  if (typeof (localStorage.getItem('cinto')) == 'string') {
-    $('.cinto .atk').html(zeraValor(JSON.parse(localStorage.getItem('cinto'))[atkElemento]))
-    $('.cinto .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('cinto'))[elemento]))
+  if (typeof (localGet('cinto')) == 'string') {
+    $('.cinto .atk').html(zeraValor(JSON.parse(localGet('cinto'))[atkElemento]))
+    $('.cinto .e-atk').html(zeraValor(JSON.parse(localGet('cinto'))[elemento]))
   } else {
     $('.cinto .atk').html(0)
     $('.cinto .e-atk').html(0)
   }
 
-  if (typeof (localStorage.getItem('peitoral')) == 'string') {
-    $('.peitoral .atk').html(zeraValor(JSON.parse(localStorage.getItem('peitoral'))[atkElemento]))
-    $('.peitoral .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('peitoral'))[elemento]))
+  if (typeof (localGet('peitoral')) == 'string') {
+    $('.peitoral .atk').html(zeraValor(JSON.parse(localGet('peitoral'))[atkElemento]))
+    $('.peitoral .e-atk').html(zeraValor(JSON.parse(localGet('peitoral'))[elemento]))
   } else {
     $('.peitoral .atk').html(0)
     $('.peitoral .e-atk').html(0)
   }
 
-  if (typeof (localStorage.getItem('calca')) == 'string') {
-    $('.calca .atk').html(zeraValor(JSON.parse(localStorage.getItem('calca'))[atkElemento]))
-    $('.calca .e-atk').html(zeraValor(JSON.parse(localStorage.getItem('calca'))[elemento]))
+  if (typeof (localGet('calca')) == 'string') {
+    $('.calca .atk').html(zeraValor(JSON.parse(localGet('calca'))[atkElemento]))
+    $('.calca .e-atk').html(zeraValor(JSON.parse(localGet('calca'))[elemento]))
   } else {
     $('.calca .atk').html(0)
     $('.calca .e-atk').html(0)
   }
 
-  if (typeof (localStorage.getItem('bota')) == 'string') {
-    $('.bota .critico').html(zeraValor(JSON.parse(localStorage.getItem('bota'))[crit]))
+  if (typeof (localGet('bota')) == 'string') {
+    $('.bota .critico').html(zeraValor(JSON.parse(localGet('bota'))[crit]))
   } else {
     $('.bota .critico').html(0)
   }
 
-  if (typeof (localStorage.getItem('luva')) == 'string') {
-    $('.luva .critico').html(zeraValor(JSON.parse(localStorage.getItem('luva'))[crit]))
+  if (typeof (localGet('luva')) == 'string') {
+    $('.luva .critico').html(zeraValor(JSON.parse(localGet('luva'))[crit]))
   } else {
     $('.luva .critico').html(0)
   }
@@ -166,27 +172,29 @@ function zeraValor(response) {
 
 function calculoEficiencia(atkElemento, elemento, crit) {
   let listaItens = ['elmo', 'ombreira', 'bracadeira', 'cinto', 'peitoral', 'calca', 'bota', 'luva']
+  let listaAtaque = []
   let listaClasse = [".barra-elmo", ".barra-ombreira", ".barra-bracadeira", ".barra-cinto", ".barra-peitoral", ".barra-calca", ".barra-bota", ".barra-luva"]
   let atk, atkE, soma, critico, critTotal = 0, somaTotal = 0
   const maxAtk = 1681, maxCrit = 6103
   let calcula
 
   for (let i = 0; i < 8; i++) {
-    calcula = localStorage.getItem(listaItens[i])
+    calcula = localGet(listaItens[i])
     atk = 0
     atkE = 0
     critico = 0
     if (i < 6) {
       if (typeof (calcula) == 'string') {
-        calcula = JSON.parse(localStorage.getItem(listaItens[i]))
+        calcula = JSON.parse(localGet(listaItens[i]))
         atk = zeraValor(calcula[atkElemento])
         atkE = zeraValor(calcula[elemento])
       }
       soma = (((atk + atkE) * 100) / maxAtk)
       somaTotal += soma
+      listaAtaque.push(soma)
     } else if (i < 8) {
       if (typeof (calcula) == 'string') {
-        calcula = JSON.parse(localStorage.getItem(listaItens[i]))
+        calcula = JSON.parse(localGet(listaItens[i]))
         critico = zeraValor(calcula[crit])
       }
       soma = (critico * 100) / maxCrit
@@ -206,6 +214,7 @@ function calculoEficiencia(atkElemento, elemento, crit) {
       $(".total-ataque").html('Eficiência total dos equipamentos: ' + (((somaTotal) / 100) * maxAtk).toFixed(0))
       $(".barra-total .eficiencia").css('width', (somaTotal / 6).toFixed(2) + '%')
       $(".status-full .porcentagem").html((somaTotal / 6).toFixed(2) + '%')
+      grafico(listaAtaque)
     }
     if (i == 7) {
       $(".total-critico").html('Eficiência total de Critico: ' + (((critTotal) / 100) * maxCrit).toFixed(0))
@@ -217,7 +226,7 @@ function calculoEficiencia(atkElemento, elemento, crit) {
 }
 
 $('.elemento').click(() => {
-  localStorage.setItem('elemento', $('.elemento:checked')[0]['id'])
+  localSet('elemento', $('.elemento:checked')[0]['id'])
   printaTela()
 })
 
@@ -264,37 +273,37 @@ function salvaStatus() {
   equipamentoModal = equipamentoModal.replace('.webp', '')
 
   if (equipamentoModal == 'elmo') {
-    let peca = JSON.parse(localStorage.getItem('elmo'))
+    let peca = JSON.parse(localGet('elmo'))
     if (peca == null)
       setStatus(elmo, elemento, equipamentoModal)
     else
       setStatus(peca, elemento, equipamentoModal)
   } else if (equipamentoModal == 'ombreira') {
-    let peca = JSON.parse(localStorage.getItem('ombreira'))
+    let peca = JSON.parse(localGet('ombreira'))
     if (peca == null)
       setStatus(elmo, elemento, equipamentoModal)
     else
       setStatus(peca, elemento, equipamentoModal)
   } else if (equipamentoModal == 'bracadeira') {
-    let peca = JSON.parse(localStorage.getItem('bracadeira'))
+    let peca = JSON.parse(localGet('bracadeira'))
     if (peca == null)
       setStatus(elmo, elemento, equipamentoModal)
     else
       setStatus(peca, elemento, equipamentoModal)
   } else if (equipamentoModal == 'cinto') {
-    let peca = JSON.parse(localStorage.getItem('cinto'))
+    let peca = JSON.parse(localGet('cinto'))
     if (peca == null)
       setStatus(elmo, elemento, equipamentoModal)
     else
       setStatus(peca, elemento, equipamentoModal)
   } else if (equipamentoModal == 'peitoral') {
-    let peca = JSON.parse(localStorage.getItem('peitoral'))
+    let peca = JSON.parse(localGet('peitoral'))
     if (peca == null)
       setStatus(elmo, elemento, equipamentoModal)
     else
       setStatus(peca, elemento, equipamentoModal)
   } else if (equipamentoModal == 'calca') {
-    let peca = JSON.parse(localStorage.getItem('calca'))
+    let peca = JSON.parse(localGet('calca'))
     if (peca == null)
       setStatus(elmo, elemento, equipamentoModal)
     else
@@ -310,10 +319,10 @@ function setStatus(peca, elemento, equipamentoModal) {
     alert("Ataque deve ser igual ou menor que 1222")
   } else if (peca[elemento] > 1629) {
     alert("Ataque elemental deve ser igual ou menor que 1629")
-  } else if ((peca[getEAtk(elemento)] + peca[elemento]) > 1681){
+  } else if ((peca[getEAtk(elemento)] + peca[elemento]) > 1681) {
     alert("A soma passou de 100% de eficiência!")
   } else {
-    localStorage.setItem(equipamentoModal, JSON.stringify(peca))
+    localSet(equipamentoModal, JSON.stringify(peca))
     cancelarStatus()
     printaTela()
   }
@@ -360,14 +369,14 @@ function salvarCrit() {
   equipamentoModal = equipamentoModal.replace('.png', '')
 
   if (equipamentoModal == 'bota') {
-    let peca = JSON.parse(localStorage.getItem('bota'))
+    let peca = JSON.parse(localGet('bota'))
     if (peca == null)
       setCrit(bota, elemento, equipamentoModal)
     else
       setCrit(peca, elemento, equipamentoModal)
   }
   else if (equipamentoModal == 'luva') {
-    let peca = JSON.parse(localStorage.getItem('luva'))
+    let peca = JSON.parse(localGet('luva'))
     if (peca == null)
       setCrit(luva, elemento, equipamentoModal)
     else
@@ -381,7 +390,7 @@ function setCrit(peca, elemento, equipamentoModal) {
   if (peca[getCrit(elemento)] > 6103) {
     alert("Critico deve ser igual ou menor que 6103")
   } else {
-    localStorage.setItem(equipamentoModal, JSON.stringify(peca))
+    localSet(equipamentoModal, JSON.stringify(peca))
     cancelarCrit()
     printaTela()
   }
@@ -390,14 +399,14 @@ function setCrit(peca, elemento, equipamentoModal) {
 
 function geraJSON() {
   let arrayJSON = [
-    localStorage.getItem('elmo'),
-    localStorage.getItem('ombreira'),
-    localStorage.getItem('bracadeira'),
-    localStorage.getItem('cinto'),
-    localStorage.getItem('peitoral'),
-    localStorage.getItem('calca'),
-    localStorage.getItem('bota'),
-    localStorage.getItem('luva')
+    localGet('elmo'),
+    localGet('ombreira'),
+    localGet('bracadeira'),
+    localGet('cinto'),
+    localGet('peitoral'),
+    localGet('calca'),
+    localGet('bota'),
+    localGet('luva')
   ]
 
   let stringJSON = JSON.stringify(arrayJSON)
@@ -418,7 +427,7 @@ function lerJSON() {
   reader.addEventListener("load", () => {
     lista = JSON.parse(reader.result)
     for (i = 0; i < itens.length; i++) {
-      importBackup(itens[i], lista[i])
+      localSet(itens[i], lista[i])
     }
     printaTela()
   }, false)
@@ -427,6 +436,58 @@ function lerJSON() {
   }
 }
 
-function importBackup(equipamento, status) {
-  localStorage.setItem(equipamento, status)
+function localSet(chave, valor) {
+  localStorage.setItem(chave, valor)
+}
+
+function localGet(chave) {
+  return localStorage.getItem(chave)
+}
+
+$('.menu-item').click(() => {
+  localSet('menu-item', $('.menu-item:checked')[0]['id'])
+  printaTela()
+})
+
+console.log(JSON.parse(localGet('elmo'))['FireAtk'])
+console.log(localGet('elemento'))
+
+function grafico(listaAtaque) {
+  console.log(listaAtaque)
+  const ctx = document.getElementById('myChart')
+  let elemento = localGet('elemento')
+
+  
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        'Elmo', 
+        'Ombreira', 
+        'Bracadeira', 
+        'Cinto', 
+        'Peitoral', 
+        'Calça'
+      ],
+      datasets: [{
+        label: `Time de fogo`,
+        data: [
+          listaAtaque[0].toFixed(2),
+          listaAtaque[1].toFixed(2),  
+          listaAtaque[2].toFixed(2), 
+          listaAtaque[3].toFixed(2), 
+          listaAtaque[4].toFixed(2), 
+          listaAtaque[5].toFixed(2)
+        ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  })
 }

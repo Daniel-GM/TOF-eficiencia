@@ -35,12 +35,13 @@ input[type="radio"] {
   visibility: hidden;
 }
 
-.radio-uid{
+.radio-uid, .menu{
   padding: 20px 0px;
   display: flex;
 }
 
-label .elementos{
+label .elementos, 
+label .item-menu{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -48,7 +49,8 @@ label .elementos{
   cursor: pointer;
 }
 
-label .elementos:hover{
+label .elementos:hover, 
+label .item-menu:hover{
   opacity: 75%; 
 }
 
@@ -57,12 +59,25 @@ label .conf-equipamentos{
   opacity: 50%;
 }
 
-input[type="radio"]:checked+label .elementos{
+input[type="radio"]:checked+label .elementos,
+input[type="radio"]:checked+label .item-menu{
   opacity: 100%;
 }
 
-/* response */
+.response, 
+.response-critico, 
+.response-JSON, 
+.response-grafico{
+  display: none;
+}
 
+/* menu */
+.menu{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
 
 /*dados da conta*/
 section.conta-info {
@@ -85,12 +100,12 @@ section.conta-info {
 }
 
 /*dados das armas*/
-section.weapons{
+section.linha{
   border-top: 2px solid #fff;
 
 }
 
-div.weapons{
+div.linha{
   margin-top: 20px;
   
   padding-left: 20%;
@@ -378,6 +393,14 @@ input#ler-JSON {
 
 .ler-label {
   cursor: pointer;
+}
+
+.grafico {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @media screen and (max-width: 800px){
