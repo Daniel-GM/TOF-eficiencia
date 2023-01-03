@@ -256,23 +256,42 @@ function salvaStatus(){
   equipamentoModal = equipamentoModal.replace(link+'img/equipamentos/', '')
   equipamentoModal = equipamentoModal.replace('.webp', '')
   
+  debugger
   if(equipamentoModal == 'elmo') {
     let peca = JSON.parse(localStorage.getItem('elmo'))
+    if(peca == null){
+      setStatus(elmo, elemento, equipamentoModal)  
+    }
     setStatus(peca, elemento, equipamentoModal)
   }  else if(equipamentoModal == 'ombreira') {
     let peca = JSON.parse(localStorage.getItem('ombreira'))
+    if(peca == null){
+      setStatus(elmo, elemento, equipamentoModal)  
+    }
     setStatus(peca, elemento, equipamentoModal)
   }  else if(equipamentoModal == 'bracadeira'){
     let peca = JSON.parse(localStorage.getItem('bracadeira'))
+    if(peca == null){
+      setStatus(elmo, elemento, equipamentoModal)  
+    }
     setStatus(peca, elemento, equipamentoModal)
   }  else if(equipamentoModal == 'cinto'){
     let peca = JSON.parse(localStorage.getItem('cinto'))
+    if(peca == null){
+      setStatus(elmo, elemento, equipamentoModal)  
+    }
     setStatus(peca, elemento, equipamentoModal)
   }  else if(equipamentoModal == 'peitoral'){
     let peca = JSON.parse(localStorage.getItem('peitoral'))
+    if(peca == null){
+      setStatus(elmo, elemento, equipamentoModal)  
+    }
     setStatus(peca, elemento, equipamentoModal)
   }  else if(equipamentoModal == 'calca'){
     let peca = JSON.parse(localStorage.getItem('calca'))
+    if(peca == null){
+      setStatus(elmo, elemento, equipamentoModal)  
+    }
     setStatus(peca, elemento, equipamentoModal)
   }
 }
@@ -368,6 +387,7 @@ function geraJSON(){
 }
 
 function lerJSON() {
+  debugger
   const [file] = document.querySelector('input[type=file]').files
   const reader = new FileReader()
   const itens = ['elmo', 'ombreira', 'bracadeira', 'cinto', 'peitoral', 'calca', 'bota', 'luva']
