@@ -258,22 +258,40 @@ function salvaStatus(){
   
   if(equipamentoModal == 'elmo') {
     let peca = JSON.parse(localStorage.getItem('elmo'))
-    setStatus(peca, elemento, equipamentoModal)
+    if(peca == null)
+      setStatus(elmo, elemento, equipamentoModal)  
+    else
+      setStatus(peca, elemento, equipamentoModal)
   }  else if(equipamentoModal == 'ombreira') {
     let peca = JSON.parse(localStorage.getItem('ombreira'))
-    setStatus(peca, elemento, equipamentoModal)
+    if(peca == null)
+      setStatus(elmo, elemento, equipamentoModal)  
+    else
+      setStatus(peca, elemento, equipamentoModal)
   }  else if(equipamentoModal == 'bracadeira'){
     let peca = JSON.parse(localStorage.getItem('bracadeira'))
-    setStatus(peca, elemento, equipamentoModal)
+    if(peca == null)
+      setStatus(elmo, elemento, equipamentoModal)  
+    else
+      setStatus(peca, elemento, equipamentoModal)
   }  else if(equipamentoModal == 'cinto'){
     let peca = JSON.parse(localStorage.getItem('cinto'))
-    setStatus(peca, elemento, equipamentoModal)
+    if(peca == null)
+      setStatus(elmo, elemento, equipamentoModal)  
+    else
+      setStatus(peca, elemento, equipamentoModal)
   }  else if(equipamentoModal == 'peitoral'){
     let peca = JSON.parse(localStorage.getItem('peitoral'))
-    setStatus(peca, elemento, equipamentoModal)
+    if(peca == null)
+      setStatus(elmo, elemento, equipamentoModal)  
+    else
+      setStatus(peca, elemento, equipamentoModal)
   }  else if(equipamentoModal == 'calca'){
     let peca = JSON.parse(localStorage.getItem('calca'))
-    setStatus(peca, elemento, equipamentoModal)
+    if(peca == null)
+      setStatus(elmo, elemento, equipamentoModal)  
+    else
+      setStatus(peca, elemento, equipamentoModal)
   }
 }
 
@@ -329,11 +347,17 @@ function salvarCrit(){
 
   if(equipamentoModal == 'bota') {
     let peca = JSON.parse(localStorage.getItem('bota'))
-    setCrit(peca, elemento, equipamentoModal)
+    if(peca == null)
+      setStatus(bota, elemento, equipamentoModal)  
+    else
+      setCrit(peca, elemento, equipamentoModal)
   }
   else if(equipamentoModal == 'luva') {
     let peca = JSON.parse(localStorage.getItem('luva'))
-    setCrit(peca, elemento, equipamentoModal)
+    if(peca == null)
+      setStatus(luva, elemento, equipamentoModal)  
+    else 
+      setCrit(peca, elemento, equipamentoModal)
   }
 }
 
@@ -368,6 +392,7 @@ function geraJSON(){
 }
 
 function lerJSON() {
+  debugger
   const [file] = document.querySelector('input[type=file]').files
   const reader = new FileReader()
   const itens = ['elmo', 'ombreira', 'bracadeira', 'cinto', 'peitoral', 'calca', 'bota', 'luva']
