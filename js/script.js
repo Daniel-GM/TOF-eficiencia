@@ -256,7 +256,6 @@ function salvaStatus(){
   equipamentoModal = equipamentoModal.replace(link+'img/equipamentos/', '')
   equipamentoModal = equipamentoModal.replace('.webp', '')
   
-  debugger
   if(equipamentoModal == 'elmo') {
     let peca = JSON.parse(localStorage.getItem('elmo'))
     if(peca == null){
