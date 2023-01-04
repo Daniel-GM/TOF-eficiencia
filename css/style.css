@@ -245,6 +245,7 @@ div.barra-total{
   width: 100%;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
+  background: linear-gradient(to right, #63c384 0%, #63c384 0%, #161616 0%);
 }
 
 .eficiencia{
@@ -404,6 +405,10 @@ input#ler-JSON {
 }
 
 @media screen and (max-width: 800px){
+  .eficiencia{
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
   .equipamento, .equipamento2 {
     width: 100%;
     margin-right: 0;
@@ -437,7 +442,14 @@ input#ler-JSON {
 }
 
 img.item-grafico{
-  width: 5%;
+  width: 70px;
+}
+
+.critico-grafico, .ataque-grafico{
+  margin-top: 20px;
+  width: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 span.porcentagem-grafico {
@@ -458,4 +470,8 @@ span.porcentagem-grafico {
   background-color: #63c384;
   z-index: 10;
   height: 5px;
+}
+
+.grafico, .barra-grafico{
+  border-radius: 20px;
 }

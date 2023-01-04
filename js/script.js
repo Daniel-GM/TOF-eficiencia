@@ -180,6 +180,7 @@ function calculoEficiencia(atkElemento, elemento, crit) {
   let calcula
   
   let listaAtaque = []
+  let listaCritico = []
 
   for (let i = 0; i < 8; i++) {
     calcula = localGet(listaItens[i])
@@ -202,29 +203,28 @@ function calculoEficiencia(atkElemento, elemento, crit) {
       }
       soma = (critico * 100) / maxCrit
       critTotal += soma
+      listaCritico.push({'item': listaItens[i], 'critico': critico, 'porcentagem': soma})
     }
     if (soma > 100) {
       $(listaClasse[i] + " .eficiencia").css('width', 100 + '%')
       $(listaClasse[i] + " .eficiencia").css('background-color', 'red')
       $(listaClasse[i] + " .porcentagem").html('Valor invalido!')
     } else {
-      $(listaClasse[i] + " .eficiencia").css('background-color', '#63c384')
-      $(listaClasse[i] + " .eficiencia").css('width', soma.toFixed(2) + '%')
+      $(listaClasse[i]).css('background', `linear-gradient(to right, #63c384 0%, #63c384 ${soma.toFixed(2)}%, #161616 ${soma.toFixed(2)}%)`)
       $(listaClasse[i] + " .porcentagem").html(soma.toFixed(2) + '%')
     }
 
     if (i == 5) {
       $(".total-ataque").html('Eficiência total dos equipamentos: ' + (((somaTotal) / 100) * maxAtk).toFixed(0))
-      $(".barra-total .eficiencia").css('width', (somaTotal / 6).toFixed(2) + '%')
+      $(".barra-total").css('background', `linear-gradient(to right, #63c384 0%, #63c384 ${(somaTotal / 6).toFixed(2)}%, #161616 ${(somaTotal / 6).toFixed(2)}%)`)
       $(".status-full .porcentagem").html((somaTotal / 6).toFixed(2) + '%')
-      getGrafico(listaAtaque)
     }
     if (i == 7) {
       $(".total-critico").html('Eficiência total de Critico: ' + (((critTotal) / 100) * maxCrit).toFixed(0))
-      $(".barra-total-crit .eficiencia").css('width', (critTotal / 2).toFixed(2) + '%')
+      $(".barra-total-crit").css('background', `linear-gradient(to right, #63c384 0%, #63c384 ${(critTotal / 2).toFixed(2)}%, #161616 ${(critTotal / 2).toFixed(2)}%)`)
       $(".status-full-crit .porcentagem").html((critTotal / 2).toFixed(2) + '%')
+      getGrafico(listaAtaque, listaCritico)
     }
-
   }
 }
 
@@ -452,22 +452,38 @@ $('.menu-item').click(() => {
   printaTela()
 })
 
-function getGrafico(listaAtaque){
+function getGrafico(listaAtaque, listaCritico){
   let divPAi = $('.response-grafico')[0]['children']
   listaAtaque.sort((x, y) => {
     return x.ataque - y.ataque
   })
 
-  for (let i=0; i<6; i++) {
-    $(divPAi[i]).find('img').attr('src', `img/equipamentos/${listaAtaque[i]['item']}.webp`)
-    
-    $(divPAi[i]).find('span').html(
-      `${listaAtaque[i]['ataque']} | 
-      ${listaAtaque[i]['porcentagem'].toFixed(2)}%`
-    )
-    
-    $(divPAi[i]).find('.barra-grafico').css('width', `${listaAtaque[i]['porcentagem'].toFixed(2)}%`)
-  }
-  
+  listaCritico.sort((x, y) => {
+    return x.critico - y.critico
+  })
 
+  for (let i=0; i<8; i++) {
+    if (i < 6) {
+      $(divPAi[i]).find('.item-grafico').attr('src', `img/equipamentos/${listaAtaque[i]['item']}.webp`)
+      
+      $(divPAi[i]).find('span').html(
+        `${listaAtaque[i]['ataque']} | 
+        ${listaAtaque[i]['porcentagem'].toFixed(2)}%`
+      )
+      $(divPAi[i]).find('.barra-grafico').animate({
+        width: `${listaAtaque[i]['porcentagem'].toFixed(2)}%`,
+      }, 1000)
+
+    } else if (i < 8) {
+      $(divPAi[i]).find('.item-grafico').attr('src', `img/equipamentos/${listaCritico[i-6]['item']}.png`)
+
+      $(divPAi[i]).find('span').html(
+        `${listaCritico[i-6]['critico']} | 
+        ${listaCritico[i-6]['porcentagem'].toFixed(2)}%`
+      )
+      $(divPAi[i]).find('.barra-grafico').animate({
+        width: `${listaAtaque[i-6]['porcentagem'].toFixed(2)}%`,
+      }, 1000)
+    }
+  }
 }
