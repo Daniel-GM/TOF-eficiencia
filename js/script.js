@@ -73,7 +73,9 @@ let luva = {
 
 $(`input[id=${localGet('menu-item')}]`).attr('checked', 'checked')
 $(`input[id=${localGet('elemento')}]`).attr('checked', 'checked')
-printaTela()
+
+if (localGet('menu-item') != null && localGet('elemento') != null)
+  printaTela()
 
 function displayNone() {
   $('.response').css('display', 'none')
@@ -84,8 +86,8 @@ function displayNone() {
 
 function printaTela() {
   geraJSON()
-  let menu = $('.menu-item:checked')[0]['id']
   let elemento = $('.elemento:checked')[0]['id']
+  let menu = $('.menu-item:checked')[0]['id']
   let atkElemento = getEAtk(elemento)
   let crit = getCrit(elemento)
 
@@ -172,11 +174,12 @@ function zeraValor(response) {
 
 function calculoEficiencia(atkElemento, elemento, crit) {
   let listaItens = ['elmo', 'ombreira', 'bracadeira', 'cinto', 'peitoral', 'calca', 'bota', 'luva']
-  let listaAtaque = []
   let listaClasse = [".barra-elmo", ".barra-ombreira", ".barra-bracadeira", ".barra-cinto", ".barra-peitoral", ".barra-calca", ".barra-bota", ".barra-luva"]
   let atk, atkE, soma, critico, critTotal = 0, somaTotal = 0
   const maxAtk = 1681, maxCrit = 6103
   let calcula
+  
+  let listaAtaque = []
 
   for (let i = 0; i < 8; i++) {
     calcula = localGet(listaItens[i])
@@ -191,7 +194,7 @@ function calculoEficiencia(atkElemento, elemento, crit) {
       }
       soma = (((atk + atkE) * 100) / maxAtk)
       somaTotal += soma
-      listaAtaque.push(soma)
+      listaAtaque.push({'item': listaItens[i], 'ataque': (atk + atkE), 'porcentagem': soma})
     } else if (i < 8) {
       if (typeof (calcula) == 'string') {
         calcula = JSON.parse(localGet(listaItens[i]))
@@ -214,7 +217,7 @@ function calculoEficiencia(atkElemento, elemento, crit) {
       $(".total-ataque").html('Eficiência total dos equipamentos: ' + (((somaTotal) / 100) * maxAtk).toFixed(0))
       $(".barra-total .eficiencia").css('width', (somaTotal / 6).toFixed(2) + '%')
       $(".status-full .porcentagem").html((somaTotal / 6).toFixed(2) + '%')
-      grafico(listaAtaque)
+      getGrafico(listaAtaque)
     }
     if (i == 7) {
       $(".total-critico").html('Eficiência total de Critico: ' + (((critTotal) / 100) * maxCrit).toFixed(0))
@@ -449,45 +452,22 @@ $('.menu-item').click(() => {
   printaTela()
 })
 
-console.log(JSON.parse(localGet('elmo'))['FireAtk'])
-console.log(localGet('elemento'))
-
-function grafico(listaAtaque) {
-  console.log(listaAtaque)
-  const ctx = document.getElementById('myChart')
-  let elemento = localGet('elemento')
-
-  
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: [
-        'Elmo', 
-        'Ombreira', 
-        'Bracadeira', 
-        'Cinto', 
-        'Peitoral', 
-        'Calça'
-      ],
-      datasets: [{
-        label: `Time de fogo`,
-        data: [
-          listaAtaque[0].toFixed(2),
-          listaAtaque[1].toFixed(2),  
-          listaAtaque[2].toFixed(2), 
-          listaAtaque[3].toFixed(2), 
-          listaAtaque[4].toFixed(2), 
-          listaAtaque[5].toFixed(2)
-        ],
-        borderWidth: 2
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
+function getGrafico(listaAtaque){
+  let divPAi = $('.response-grafico')[0]['children']
+  listaAtaque.sort((x, y) => {
+    return x.ataque - y.ataque
   })
+
+  for (let i=0; i<6; i++) {
+    $(divPAi[i]).find('img').attr('src', `img/equipamentos/${listaAtaque[i]['item']}.webp`)
+    
+    $(divPAi[i]).find('span').html(
+      `${listaAtaque[i]['ataque']} | 
+      ${listaAtaque[i]['porcentagem'].toFixed(2)}%`
+    )
+    
+    $(divPAi[i]).find('.barra-grafico').css('width', `${listaAtaque[i]['porcentagem'].toFixed(2)}%`)
+  }
+  
+
 }
