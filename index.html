@@ -31,6 +31,8 @@
         <label for="menu-crit"><img src="img/status/critico.png" alt="" class="item-menu"></label>
         <input type="radio" name="menu" id="menu-grafico" class="menu-item" />
         <label for="menu-grafico"><img src="img/icon/equalizer_white_36dp.svg" alt="" class="item-menu"></label>
+        <input type="radio" name="menu" id="menu-calculadora" class="menu-item" />
+        <label for="menu-calculadora"><img src="img/icon/calculate_white_36dp.svg" alt="" class="item-menu"></label>
       </div>
     </div>
   </div>
@@ -432,8 +434,76 @@
       <div class="grafico">
         <div class="barra-grafico"></div>
       </div>
-    </div>    
+    </div>
   </div>
+
+  <!-- CALCULADORA -->
+  <div class="response-calculadora">
+    <img src="img/status/atk.webp" alt="" class="calc-ataque">
+    <div class="div-calculadora">
+      <button class="calculadora-button calculadora-elmo" id="calc-elmo" onclick="teste()">1</button>
+      <label for="calc-elmo"><img src="img/equipamentos/elmo.webp" alt=""></label>
+
+      <button class="calculadora-button calculadora-ombreira" id="calc-ombreira" onclick="teste()">1</button>
+      <label for="calc-ombreira"><img src="img/equipamentos/ombreira.webp" alt=""></label>
+
+      <button class="calculadora-button calculadora-bracadeira" id="calc-bracadeira" onclick="teste()">1</button>
+      <label for="calc-bracadeira"><img src="img/equipamentos/bracadeira.webp" alt=""></label>
+
+      <button class="calculadora-button calculadora-cinto" id="calc-cinto" onclick="teste()">1</button>
+      <label for="calc-cinto"><img src="img/equipamentos/cinto.webp" alt=""></label>
+
+      <button class="calculadora-button calculadora-peitoral" id="calc-peitoral" onclick="teste()">1</button>
+      <label for="calc-peitoral"><img src="img/equipamentos/peitoral.webp" alt=""></label>
+
+      <button class="calculadora-button calculadora-calca" id="calc-calca" onclick="teste()">1</button>
+      <label for="calc-calca"><img src="img/equipamentos/calca.webp" alt=""></label>
+    </div>
+    <img src="img/status/critico.png" alt="" class="calc-critico">
+    <div class="div-calculadora">
+      <button class="calculadora-button calculadora-bota" id="calc-bota" onclick="calculaCrit(this.id)">1</button>
+      <label for="calc-bota"><img src="img/equipamentos/bota.png" alt=""></label>
+
+      <button class="calculadora-button calculadora-luva" id="calc-luva" onclick="calculaCrit(this.id)">1</button>
+      <label for="calc-luva"><img src="img/equipamentos/luva.png" alt=""></label>
+    </div>
+  </div>
+
+  <section class="modal-crit">
+    <div id="calculadora-crit">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="itens-modal">
+            <div class="calc-1">
+              <img src="img/equipamentos/bota.png" class="equipamento-modal crit-calc">
+              <div class="modal-atk-e modal-critico">
+                <img src="img/status/critico.png" class="img-atk-e img-crit-calc">
+                <input type="text" class="text-crit-calc">
+              </div>
+
+              <div class="btn-salvar">
+                <button type="submit" class="salvar-editar" onclick="verificaCalculadoraCrit()"><i
+                    class="fa fa-save"></i>
+                  Salvar</button>
+              </div>
+              <div class="btn-cancelar">
+                <button type="submit" class="cancelar-editar" onclick="cancelarCalculadoraCrit()"><i
+                    class="fa fa-times"></i>
+                  Cancelar</button>
+              </div>
+            </div>
+            <div class="calc-2">
+              <img src="" alt="" class="resultadoCrit">
+              <span class="calculadora-valor"></span>
+              <span class="calculadora-porcentagem"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 
   <script src="https://use.fontawesome.com/62e43a72a9.js"></script>
   <script src="js/script.js"></script>

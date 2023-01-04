@@ -67,7 +67,8 @@ input[type="radio"]:checked+label .item-menu{
 .response, 
 .response-critico, 
 .response-JSON, 
-.response-grafico{
+.response-grafico,
+.response-calculadora {
   display: none;
 }
 
@@ -267,7 +268,8 @@ div.barra-total{
 
 /* modal */
 #fade,
-#crit{
+#crit,
+#calculadora-crit{
   transition: 0,5s;
   position: fixed;
   top: 0;
@@ -313,7 +315,7 @@ div.barra-total{
   padding: 1.2rem;
 }
 
-.modal-atk, .modal-atk-e, .itens-modal{
+.modal-atk, .modal-atk-e, .itens-modal, .calc-1{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -424,6 +426,11 @@ input#ler-JSON {
   #json, .ler-label{
     width: 40%;
   }
+
+  .div-calculadora  {
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+  }
 }
 
 
@@ -474,4 +481,46 @@ span.porcentagem-grafico {
 
 .grafico, .barra-grafico{
   border-radius: 20px;
+}
+
+.calculadora-button{
+  display: none;
+}
+
+.div-calculadora {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 20px;
+}
+
+.response-calculadora {
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.calc-ataque, .calc-critico{
+  width: 40px;
+}
+
+.calc-critico{
+  margin-top: 20px;
+}
+
+.div-calculadora img{
+  width: 60px;
+  opacity: 40%;
+}
+
+.div-calculadora img:hover{
+  opacity: 80%;
+}
+
+.calc-2 {
+  flex-direction: column;
+  align-items: center;
 }

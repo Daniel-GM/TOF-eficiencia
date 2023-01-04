@@ -82,6 +82,7 @@ function displayNone() {
   $('.response-critico').css('display', 'none')
   $('.response-JSON').css('display', 'none')
   $('.response-grafico').css('display', 'none')
+  $('.response-calculadora').css('display', 'none')
 }
 
 function printaTela() {
@@ -100,7 +101,9 @@ function printaTela() {
     $('.response-JSON').css('display', 'block')
   } else if (menu == 'menu-grafico') {
     $('.response-grafico').css('display', 'block')
-  } 
+  } else if (menu == 'menu-calculadora') {
+    $('.response-calculadora').css('display', 'flex')
+  }
 
   if (typeof (localGet('elmo')) == 'string') {
     $('.elmo .atk').html(zeraValor(JSON.parse(localGet('elmo'))[atkElemento]))
@@ -486,4 +489,71 @@ function getGrafico(listaAtaque, listaCritico){
       }, 1000)
     }
   }
+}
+
+function teste(){
+  alert('botao')
+}
+
+function calculaCrit(id){
+  if ($('.elemento:checked')[0] == undefined)
+    alert('Selecione um elemento')
+  else {
+    $('#calculadora-crit').fadeToggle(200)
+    id = id.replace('calc-', '')
+    $('.crit-calc').attr('src', $('.' + id + ' .equip-img')[0]['src'])
+    $('.img-atk-e').attr('src', 'img/status/critico.png')
+  }
+}
+
+function verificaCalculadoraCrit(){
+  let elemento = localGet('elemento')
+  let equipamento = $('.crit-calc')[0]['src']
+  
+  let link = window.location.href
+  
+  if (link == 'http://127.0.0.1:3000/index.html') {
+    link = link.replace('index.html', '')
+  }
+  
+  equipamento = equipamento.replace(link + 'img/equipamentos/', '')
+  equipamento = equipamento.replace('.png', '')
+
+  calculadoraResultado(equipamento, elemento)
+}
+
+function calculadoraResultado(equipamento, elemento){
+  $('.itens-modal .calc-1').css('display', 'none')
+  $('.itens-modal .calc-2').css('display', 'flex')
+
+  let itemDropado = Number($('.text-crit-calc').val())
+  let itemAtual = JSON.parse(localGet(equipamento))[getCrit(elemento)]
+  
+  itemDropado -= itemAtual
+
+  if (itemDropado > 0) {
+    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.png`)
+    $('.calculadora-valor').html(`+${itemDropado}`)
+    $('.calculadora-valor').css('color', '#63c384')
+    $('.calculadora-porcentagem').html(`+${((itemDropado*100)/6103).toFixed(2)}%`)
+    $('.calculadora-porcentagem').css('color', '#63c384')
+  } else if (itemDropado < 0) {
+    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.png`)
+    $('.calculadora-valor').html(`${itemDropado}`)
+    $('.calculadora-valor').css('color', 'red')
+    $('.calculadora-porcentagem').html(`${((itemDropado*100)/6103).toFixed(2)}%`)
+    $('.calculadora-porcentagem').css('color', 'red')
+  } else {
+    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.png`)
+    $('.calculadora-valor').html(`0`)
+    $('.calculadora-porcentagem').html(`0`)
+    $('.calculadora-valor').css('color', '#fff')
+    $('.calculadora-porcentagem').css('color', '#fff')
+  }
+  
+}
+
+function cancelarCalculadoraCrit(){
+  $('#calculadora-crit').fadeToggle(200)
+  $('.text-crit').val('')
 }
