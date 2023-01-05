@@ -181,7 +181,7 @@ function calculoEficiencia(atkElemento, elemento, crit) {
   let atk, atkE, soma, critico, critTotal = 0, somaTotal = 0
   const maxAtk = 1681, maxCrit = 6103
   let calcula
-  
+
   let listaAtaque = []
   let listaCritico = []
 
@@ -198,7 +198,7 @@ function calculoEficiencia(atkElemento, elemento, crit) {
       }
       soma = (((atk + atkE) * 100) / maxAtk)
       somaTotal += soma
-      listaAtaque.push({'item': listaItens[i], 'ataque': (atk + atkE), 'porcentagem': soma})
+      listaAtaque.push({ 'item': listaItens[i], 'ataque': (atk + atkE), 'porcentagem': soma })
     } else if (i < 8) {
       if (typeof (calcula) == 'string') {
         calcula = JSON.parse(localGet(listaItens[i]))
@@ -206,7 +206,7 @@ function calculoEficiencia(atkElemento, elemento, crit) {
       }
       soma = (critico * 100) / maxCrit
       critTotal += soma
-      listaCritico.push({'item': listaItens[i], 'critico': critico, 'porcentagem': soma})
+      listaCritico.push({ 'item': listaItens[i], 'critico': critico, 'porcentagem': soma })
     }
     if (soma > 100) {
       $(listaClasse[i] + " .eficiencia").css('width', 100 + '%')
@@ -361,9 +361,16 @@ function cancelarCrit() {
   $('.text-crit').val('')
 }
 
-function salvarCrit() {
+function salvarCrit(id) {
   let elemento = $('.elemento:checked')[0]['id']
-  let equipamentoModal = $('.crit-modal')[0]['src']
+  let equipamentoModal
+  if (id == "submit-crit") {
+    equipamentoModal = $('.crit-modal')[0]['src']
+  } else {
+    equipamentoModal = $('.crit-calc')[0]['src']
+  }
+
+  console.log(equipamentoModal)
 
   let link = window.location.href
 
@@ -377,27 +384,33 @@ function salvarCrit() {
   if (equipamentoModal == 'bota') {
     let peca = JSON.parse(localGet('bota'))
     if (peca == null)
-      setCrit(bota, elemento, equipamentoModal)
+      setCrit(bota, elemento, id, equipamentoModal)
     else
-      setCrit(peca, elemento, equipamentoModal)
+      setCrit(peca, elemento, id, equipamentoModal)
   }
   else if (equipamentoModal == 'luva') {
     let peca = JSON.parse(localGet('luva'))
     if (peca == null)
-      setCrit(luva, elemento, equipamentoModal)
+      setCrit(luva, elemento, id, equipamentoModal)
     else
-      setCrit(peca, elemento, equipamentoModal)
+      setCrit(peca, elemento, id, equipamentoModal)
   }
 }
 
-function setCrit(peca, elemento, equipamentoModal) {
-  peca[getCrit(elemento)] = Number($('.text-crit').val())
+function setCrit(peca, elemento, id, equipamentoModal) {
+  if(id == "submit-crit")
+    peca[getCrit(elemento)] = Number($('.text-crit').val())
+  else
+    peca[getCrit(elemento)] = Number($('.text-crit-calc').val())
 
   if (peca[getCrit(elemento)] > 6103) {
     alert("Critico deve ser igual ou menor que 6103")
   } else {
     localSet(equipamentoModal, JSON.stringify(peca))
-    cancelarCrit()
+    if(id == "submit-crit")
+      cancelarCrit()
+    else
+      cancelarCalculadoraCrit()
     printaTela()
   }
 
@@ -455,7 +468,7 @@ $('.menu-item').click(() => {
   printaTela()
 })
 
-function getGrafico(listaAtaque, listaCritico){
+function getGrafico(listaAtaque, listaCritico) {
   let divPAi = $('.response-grafico')[0]['children']
   listaAtaque.sort((x, y) => {
     return x.ataque - y.ataque
@@ -465,10 +478,10 @@ function getGrafico(listaAtaque, listaCritico){
     return x.critico - y.critico
   })
 
-  for (let i=0; i<8; i++) {
+  for (let i = 0; i < 8; i++) {
     if (i < 6) {
       $(divPAi[i]).find('.item-grafico').attr('src', `img/equipamentos/${listaAtaque[i]['item']}.webp`)
-      
+
       $(divPAi[i]).find('span').html(
         `${listaAtaque[i]['ataque']} | 
         ${listaAtaque[i]['porcentagem'].toFixed(2)}%`
@@ -478,24 +491,24 @@ function getGrafico(listaAtaque, listaCritico){
       }, 1000)
 
     } else if (i < 8) {
-      $(divPAi[i]).find('.item-grafico').attr('src', `img/equipamentos/${listaCritico[i-6]['item']}.png`)
+      $(divPAi[i]).find('.item-grafico').attr('src', `img/equipamentos/${listaCritico[i - 6]['item']}.png`)
 
       $(divPAi[i]).find('span').html(
-        `${listaCritico[i-6]['critico']} | 
-        ${listaCritico[i-6]['porcentagem'].toFixed(2)}%`
+        `${listaCritico[i - 6]['critico']} | 
+        ${listaCritico[i - 6]['porcentagem'].toFixed(2)}%`
       )
       $(divPAi[i]).find('.barra-grafico').animate({
-        width: `${listaAtaque[i-6]['porcentagem'].toFixed(2)}%`,
+        width: `${listaCritico[i - 6]['porcentagem'].toFixed(2)}%`,
       }, 1000)
     }
   }
 }
 
-function teste(){
+function teste() {
   alert('botao')
 }
 
-function calculaCrit(id){
+function calculaCrit(id) {
   if ($('.elemento:checked')[0] == undefined)
     alert('Selecione um elemento')
   else {
@@ -506,42 +519,47 @@ function calculaCrit(id){
   }
 }
 
-function verificaCalculadoraCrit(){
+function verificaCalculadoraCrit() {
   let elemento = localGet('elemento')
   let equipamento = $('.crit-calc')[0]['src']
-  
+
   let link = window.location.href
-  
+
   if (link == 'http://127.0.0.1:3000/index.html') {
     link = link.replace('index.html', '')
   }
-  
+
   equipamento = equipamento.replace(link + 'img/equipamentos/', '')
   equipamento = equipamento.replace('.png', '')
 
   calculadoraResultado(equipamento, elemento)
 }
 
-function calculadoraResultado(equipamento, elemento){
+function calculadoraResultado(equipamento, elemento) {
   $('.itens-modal .calc-1').css('display', 'none')
   $('.itens-modal .calc-2').css('display', 'flex')
 
   let itemDropado = Number($('.text-crit-calc').val())
-  let itemAtual = JSON.parse(localGet(equipamento))[getCrit(elemento)]
-  
-  itemDropado -= itemAtual
+  let itemAtual = 0
+
+
+
+  if (JSON.parse(localGet(equipamento)) != null) {
+    itemAtual = JSON.parse(localGet(equipamento))[getCrit(elemento)]
+    itemDropado -= itemAtual
+  }
 
   if (itemDropado > 0) {
     $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.png`)
     $('.calculadora-valor').html(`+${itemDropado}`)
     $('.calculadora-valor').css('color', '#63c384')
-    $('.calculadora-porcentagem').html(`+${((itemDropado*100)/6103).toFixed(2)}%`)
+    $('.calculadora-porcentagem').html(`+${((itemDropado * 100) / 6103).toFixed(2)}%`)
     $('.calculadora-porcentagem').css('color', '#63c384')
   } else if (itemDropado < 0) {
     $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.png`)
     $('.calculadora-valor').html(`${itemDropado}`)
     $('.calculadora-valor').css('color', 'red')
-    $('.calculadora-porcentagem').html(`${((itemDropado*100)/6103).toFixed(2)}%`)
+    $('.calculadora-porcentagem').html(`${((itemDropado * 100) / 6103).toFixed(2)}%`)
     $('.calculadora-porcentagem').css('color', 'red')
   } else {
     $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.png`)
@@ -550,10 +568,13 @@ function calculadoraResultado(equipamento, elemento){
     $('.calculadora-valor').css('color', '#fff')
     $('.calculadora-porcentagem').css('color', '#fff')
   }
-  
 }
 
-function cancelarCalculadoraCrit(){
+function cancelarCalculadoraCrit() {
   $('#calculadora-crit').fadeToggle(200)
-  $('.text-crit').val('')
+  $('.text-crit-calc').val('')
+  setTimeout(() => {
+    $('.itens-modal .calc-1').css('display', 'flex')
+    $('.itens-modal .calc-2').css('display', 'none')
+  }, 201)
 }

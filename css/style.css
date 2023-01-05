@@ -329,7 +329,7 @@ div.barra-total{
   padding-bottom: 2rem;
 }
 
-.text-atk-e, .text-atk, .text-crit{
+.text-atk-e, .text-atk, .text-crit, .text-crit-calc{
   width: 100%;
   text-align: center;
 }
@@ -523,4 +523,6 @@ span.porcentagem-grafico {
 .calc-2 {
   flex-direction: column;
   align-items: center;
+  display: none;
+  width: 100%;
 }
