@@ -269,7 +269,8 @@ div.barra-total{
 /* modal */
 #fade,
 #crit,
-#calculadora-crit{
+#calculadora-crit,
+#calculadora-ataque {
   transition: 0,5s;
   position: fixed;
   top: 0;

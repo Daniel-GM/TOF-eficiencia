@@ -83,6 +83,7 @@ function displayNone() {
   $('.response-JSON').css('display', 'none')
   $('.response-grafico').css('display', 'none')
   $('.response-calculadora').css('display', 'none')
+  $('.calculadora-ataque').css('display', 'none')
 }
 
 function printaTela() {
@@ -370,8 +371,6 @@ function salvarCrit(id) {
     equipamentoModal = $('.crit-calc')[0]['src']
   }
 
-  console.log(equipamentoModal)
-
   let link = window.location.href
 
   if (link == 'http://127.0.0.1:3000/index.html') {
@@ -542,10 +541,8 @@ function calculadoraResultado(equipamento, elemento) {
   let itemDropado = Number($('.text-crit-calc').val())
   let itemAtual = 0
 
-
-
   if (JSON.parse(localGet(equipamento)) != null) {
-    itemAtual = JSON.parse(localGet(equipamento))[getCrit(elemento)]
+    itemAtual = zeraValor(JSON.parse(localGet(equipamento))[getCrit(elemento)])
     itemDropado -= itemAtual
   }
 
@@ -577,4 +574,16 @@ function cancelarCalculadoraCrit() {
     $('.itens-modal .calc-1').css('display', 'flex')
     $('.itens-modal .calc-2').css('display', 'none')
   }, 201)
+}
+
+function calculaAtaque(id) {
+  if ($('.elemento:checked')[0] == undefined)
+    alert('Selecione um elemento')
+  else {
+    $('#calculadora-ataque').fadeToggle(200)
+    let elemento = $('.elemento:checked')[0]['id']
+    id = id.replace('calc-', '')
+    $('.equipamento-modal').attr('src', $('.' + id + ' .equip-img')[0]['src'])
+    $('.img-atk-e').attr('src', 'img/status/' + elemento + '.webp')
+  }
 }

@@ -441,22 +441,22 @@
   <div class="response-calculadora">
     <img src="img/status/atk.webp" alt="" class="calc-ataque">
     <div class="div-calculadora">
-      <button class="calculadora-button calculadora-elmo" id="calc-elmo" onclick="teste()">1</button>
+      <button class="calculadora-button calculadora-elmo" id="calc-elmo" onclick="calculaAtaque(this.id)">1</button>
       <label for="calc-elmo"><img src="img/equipamentos/elmo.webp" alt=""></label>
 
-      <button class="calculadora-button calculadora-ombreira" id="calc-ombreira" onclick="teste()">1</button>
+      <button class="calculadora-button calculadora-ombreira" id="calc-ombreira" onclick="calculaAtaque(this.id)">1</button>
       <label for="calc-ombreira"><img src="img/equipamentos/ombreira.webp" alt=""></label>
 
-      <button class="calculadora-button calculadora-bracadeira" id="calc-bracadeira" onclick="teste()">1</button>
+      <button class="calculadora-button calculadora-bracadeira" id="calc-bracadeira" onclick="calculaAtaque(this.id)">1</button>
       <label for="calc-bracadeira"><img src="img/equipamentos/bracadeira.webp" alt=""></label>
 
-      <button class="calculadora-button calculadora-cinto" id="calc-cinto" onclick="teste()">1</button>
+      <button class="calculadora-button calculadora-cinto" id="calc-cinto" onclick="calculaAtaque(this.id)">1</button>
       <label for="calc-cinto"><img src="img/equipamentos/cinto.webp" alt=""></label>
 
-      <button class="calculadora-button calculadora-peitoral" id="calc-peitoral" onclick="teste()">1</button>
+      <button class="calculadora-button calculadora-peitoral" id="calc-peitoral" onclick="calculaAtaque(this.id)">1</button>
       <label for="calc-peitoral"><img src="img/equipamentos/peitoral.webp" alt=""></label>
 
-      <button class="calculadora-button calculadora-calca" id="calc-calca" onclick="teste()">1</button>
+      <button class="calculadora-button calculadora-calca" id="calc-calca" onclick="calculaAtaque(this.id)">1</button>
       <label for="calc-calca"><img src="img/equipamentos/calca.webp" alt=""></label>
     </div>
     <img src="img/status/critico.png" alt="" class="calc-critico">
@@ -469,6 +469,34 @@
     </div>
   </div>
 
+  <section class="modal-ataque">
+    <div id="calculadora-ataque">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="itens-modal">
+            <img src="img/equipamentos/elmo.webp" class="equipamento-modal">
+            <div class="modal-atk">
+              <img src="img/status/atk.webp" class="img-atk">
+              <input type="text" class="text-atk">
+            </div>
+            <div class="modal-atk-e">
+              <img src="img/status/ThunderAtk.webp" class="img-atk-e">
+              <input type="text" class="text-atk-e">
+            </div>
+            <div class="btn-salvar">
+              <button type="submit" class="salvar-editar" onclick="salvaStatus()"><i class="fa fa-save"></i>
+                Salvar</button>
+            </div>
+            <div class="btn-cancelar">
+              <button type="submit" class="cancelar-editar" onclick="cancelarStatus()"><i class="fa fa-times"></i>
+                Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="modal-crit">
     <div id="calculadora-crit">
       <div class="modal">
@@ -480,7 +508,6 @@
                 <img src="img/status/critico.png" class="img-atk-e img-crit-calc">
                 <input type="text" class="text-crit-calc">
               </div>
-
               <div class="btn-salvar">
                 <button type="submit" class="salvar-editar" onclick="verificaCalculadoraCrit()"><i
                     class="fa fa-save"></i>
