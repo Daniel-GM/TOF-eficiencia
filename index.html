@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="img/icon/ruby.png" type="image/x-icon">
-  <title>TOF Eficiência - Alfa 1.4</title>
+  <title>TOF Eficiência - Alfa 2.0</title>
 </head>
 
 <body>
@@ -28,11 +28,13 @@
         <input type="radio" name="menu" id="menu-atk" class="menu-item" />
         <label for="menu-atk"><img src="img/status/atk.webp" alt="" class="item-menu"></label>
         <input type="radio" name="menu" id="menu-crit" class="menu-item" />
-        <label for="menu-crit"><img src="img/status/critico.png" alt="" class="item-menu"></label>
+        <label for="menu-crit"><img src="img/status/critico.webp" alt="" class="item-menu"></label>
         <input type="radio" name="menu" id="menu-grafico" class="menu-item" />
         <label for="menu-grafico"><img src="img/icon/equalizer_white_36dp.svg" alt="" class="item-menu"></label>
         <input type="radio" name="menu" id="menu-calculadora" class="menu-item" />
         <label for="menu-calculadora"><img src="img/icon/calculate_white_36dp.svg" alt="" class="item-menu"></label>
+        <input type="radio" name="menu" id="menu-json" class="menu-item" />
+        <label for="menu-json"><img src="img/icon/save_white_36dp.svg" alt="" class="item-menu"></label>
       </div>
     </div>
   </div>
@@ -77,6 +79,10 @@
                 <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
                 <span class="e-atk"></span>
               </div>
+              <div class="total">
+                <img src="img/icon/add_task_white_24dp.svg" class="icon-total">
+                <span class="total-elmo"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -103,6 +109,10 @@
               <div class="e-ataque">
                 <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
                 <span class="e-atk"></span>
+              </div>
+              <div class="total">
+                <img src="img/icon/add_task_white_24dp.svg" class="icon-total">
+                <span class="total-ombreira"></span>
               </div>
             </div>
           </div>
@@ -131,6 +141,10 @@
                 <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
                 <span class="e-atk"></span>
               </div>
+              <div class="total">
+                <img src="img/icon/add_task_white_24dp.svg" class="icon-total">
+                <span class="total-bracadeira"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -157,6 +171,10 @@
               <div class="e-ataque">
                 <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
                 <span class="e-atk"></span>
+              </div>
+              <div class="total">
+                <img src="img/icon/add_task_white_24dp.svg" class="icon-total">
+                <span class="total-cinto"></span>
               </div>
             </div>
           </div>
@@ -185,6 +203,10 @@
                 <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
                 <span class="e-atk"></span>
               </div>
+              <div class="total">
+                <img src="img/icon/add_task_white_24dp.svg" class="icon-total">
+                <span class="total-peitoral"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -212,6 +234,10 @@
                 <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
                 <span class="e-atk"></span>
               </div>
+              <div class="total">
+                <img src="img/icon/add_task_white_24dp.svg" class="icon-total">
+                <span class="total-calca"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -229,17 +255,17 @@
       <div class="modal">
         <div class="modal-header">
           <div class="itens-modal">
-            <img src="img/equipamentos/elmo.webp" class="equipamento-modal">
+            <img src="img/equipamentos/elmo.webp" class="equipamento-modal ataque-modal">
             <div class="modal-atk">
               <img src="img/status/atk.webp" class="img-atk">
-              <input type="text" class="text-atk">
+              <input type="text" class="text-atk" id="campo-atk">
             </div>
             <div class="modal-atk-e">
               <img src="img/status/ThunderAtk.webp" class="img-atk-e">
-              <input type="text" class="text-atk-e">
+              <input type="text" class="text-atk-e" id="campo-atk-e">
             </div>
             <div class="btn-salvar">
-              <button type="submit" class="salvar-editar" onclick="salvaStatus()"><i class="fa fa-save"></i>
+              <button type="submit" class="salvar-editar" id="submit-ataque" onclick="salvaStatus(this.id)"><i class="fa fa-save"></i>
                 Salvar</button>
             </div>
             <div class="btn-cancelar">
@@ -278,10 +304,10 @@
         </div>
         <div class="dados">
           <div class="bota">
-            <img src="img/equipamentos/bota.png" class="equip-crit-img equip-img">
+            <img src="img/equipamentos/bota.webp" class="equip-crit-img equip-img">
             <div class="status">
               <div class="crit">
-                <img src="img/status/critico.png" class="icon-crit">
+                <img src="img/status/critico.webp" class="icon-crit">
                 <span class="critico"></span>
               </div>
             </div>
@@ -300,10 +326,10 @@
         </div>
         <div class="dados">
           <div class="luva">
-            <img src="img/equipamentos/luva.png" class="equip-crit-img equip-img">
+            <img src="img/equipamentos/luva.webp" class="equip-crit-img equip-img">
             <div class="status">
               <div class="crit">
-                <img src="img/status/critico.png" class="icon-crit">
+                <img src="img/status/critico.webp" class="icon-crit">
                 <span class="critico"></span>
               </div>
             </div>
@@ -322,10 +348,10 @@
       <div class="modal">
         <div class="modal-header">
           <div class="itens-modal">
-            <img src="img/equipamentos/bota.png" class="equipamento-modal crit-modal">
+            <img src="img/equipamentos/bota.webp" class="equipamento-modal crit-modal">
             <div class="modal-atk-e modal-critico">
-              <img src="img/status/critico.png" class="img-atk-e img-crit-modal">
-              <input type="text" class="text-crit">
+              <img src="img/status/critico.webp" class="img-atk-e img-crit-modal">
+              <input type="text" class="text-crit" id="campo-crit">
             </div>
             <div class="btn-salvar">
               <button type="submit" class="salvar-editar" id="submit-crit" onclick="salvarCrit(this.id)"><i class="fa fa-save"></i>
@@ -416,7 +442,7 @@
     </div>
 
     <div class="info-grafico">
-      <img src="img/status/critico.png" alt="" class="critico-grafico">
+      <img src="img/status/critico.webp" alt="" class="critico-grafico">
       <div class="texto-grafico">
         <img class="item-grafico">
         <span class="porcentagem-grafico"></span>
@@ -459,13 +485,13 @@
       <button class="calculadora-button calculadora-calca" id="calc-calca" onclick="calculaAtaque(this.id)">1</button>
       <label for="calc-calca"><img src="img/equipamentos/calca.webp" alt=""></label>
     </div>
-    <img src="img/status/critico.png" alt="" class="calc-critico">
+    <img src="img/status/critico.webp" alt="" class="calc-critico">
     <div class="div-calculadora">
       <button class="calculadora-button calculadora-bota" id="calc-bota" onclick="calculaCrit(this.id)">1</button>
-      <label for="calc-bota"><img src="img/equipamentos/bota.png" alt=""></label>
+      <label for="calc-bota"><img src="img/equipamentos/bota.webp" alt=""></label>
 
       <button class="calculadora-button calculadora-luva" id="calc-luva" onclick="calculaCrit(this.id)">1</button>
-      <label for="calc-luva"><img src="img/equipamentos/luva.png" alt=""></label>
+      <label for="calc-luva"><img src="img/equipamentos/luva.webp" alt=""></label>
     </div>
   </div>
 
@@ -474,22 +500,37 @@
       <div class="modal">
         <div class="modal-header">
           <div class="itens-modal">
-            <img src="img/equipamentos/elmo.webp" class="equipamento-modal">
-            <div class="modal-atk">
-              <img src="img/status/atk.webp" class="img-atk">
-              <input type="text" class="text-atk">
+            <div class="calc-ataque-1">
+              <img src="img/equipamentos/elmo.webp" class="equipamento-modal ataque-calc">
+              <div class="modal-atk">
+                <img src="img/status/atk.webp" class="img-atk">
+                <input type="text" class="text-atk-calculadora" id="campo-atk-calc">
+              </div>
+              <div class="modal-atk-e">
+                <img src="img/status/ThunderAtk.webp" class="img-atk-e">
+                <input type="text" class="text-atk-e-calculadora" id="campo-atk-e-calc">
+              </div>
+              <div class="btn-salvar">
+                <button type="submit" class="salvar-editar" id="submit-ataque-calc" onclick="verificaCalculadoraAtaque()"><i class="fa fa-save"></i>
+                  Salvar</button>
+              </div>
+              <div class="btn-cancelar">
+                <button type="submit" class="cancelar-editar" onclick="cancelarCalculadoraAtaque()"><i class="fa fa-times"></i>
+                  Cancelar</button>
+              </div>
             </div>
-            <div class="modal-atk-e">
-              <img src="img/status/ThunderAtk.webp" class="img-atk-e">
-              <input type="text" class="text-atk-e">
-            </div>
-            <div class="btn-salvar">
-              <button type="submit" class="salvar-editar" onclick="salvaStatus()"><i class="fa fa-save"></i>
-                Salvar</button>
-            </div>
-            <div class="btn-cancelar">
-              <button type="submit" class="cancelar-editar" onclick="cancelarStatus()"><i class="fa fa-times"></i>
-                Cancelar</button>
+            <div class="calc-ataque-2">
+              <img src="" alt="" class="resultadoCrit">
+              <span class="calculadora-valor"></span>
+              <span class="calculadora-porcentagem"></span>
+              <div class="btn-salvar">
+                <button type="submit" class="salvar-editar" id="submit-calc-crit" onclick="salvaStatus(this.id)"><i class="fa fa-save"></i>
+                  Modificar valor</button>
+              </div>
+              <div class="btn-cancelar">
+                <button type="submit" class="cancelar-editar" onclick="cancelarCalculadoraAtaque()"><i class="fa fa-times"></i>
+                  Cancelar</button>
+              </div>
             </div>
           </div>
         </div>
@@ -502,14 +543,14 @@
       <div class="modal">
         <div class="modal-header">
           <div class="itens-modal">
-            <div class="calc-1">
-              <img src="img/equipamentos/bota.png" class="equipamento-modal crit-calc">
+            <div class="calc-crit-1">
+              <img src="img/equipamentos/bota.webp" class="equipamento-modal crit-calc">
               <div class="modal-atk-e modal-critico">
-                <img src="img/status/critico.png" class="img-atk-e img-crit-calc">
-                <input type="text" class="text-crit-calc">
+                <img src="img/status/critico.webp" class="img-atk-e img-crit-calc">
+                <input type="text" class="text-crit-calc" id="campo-crit-calc">
               </div>
               <div class="btn-salvar">
-                <button type="submit" class="salvar-editar" onclick="verificaCalculadoraCrit()"><i
+                <button type="submit" class="salvar-editar" id="submit-crit-calc" onclick="verificaCalculadoraCrit()"><i
                     class="fa fa-save"></i>
                   Calcular</button>
               </div>
@@ -519,7 +560,7 @@
                   Cancelar</button>
               </div>
             </div>
-            <div class="calc-2">
+            <div class="calc-crit-2">
               <img src="" alt="" class="resultadoCrit">
               <span class="calculadora-valor"></span>
               <span class="calculadora-porcentagem"></span>

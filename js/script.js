@@ -104,7 +104,11 @@ function printaTela() {
     $('.response-grafico').css('display', 'block')
   } else if (menu == 'menu-calculadora') {
     $('.response-calculadora').css('display', 'flex')
-  }
+  } else if (menu == 'menu-json') {
+    $('.response-JSON').css('display', 'flex')
+  } 
+
+  
 
   if (typeof (localGet('elmo')) == 'string') {
     $('.elmo .atk').html(zeraValor(JSON.parse(localGet('elmo'))[atkElemento]))
@@ -200,6 +204,7 @@ function calculoEficiencia(atkElemento, elemento, crit) {
       soma = (((atk + atkE) * 100) / maxAtk)
       somaTotal += soma
       listaAtaque.push({ 'item': listaItens[i], 'ataque': (atk + atkE), 'porcentagem': soma })
+      $(`.total-${listaItens[i]}`).html(`${(atk + atkE)}`)
     } else if (i < 8) {
       if (typeof (calcula) == 'string') {
         calcula = JSON.parse(localGet(listaItens[i]))
@@ -267,9 +272,15 @@ function cancelarStatus() {
   $('.text-atk-e').val('')
 }
 
-function salvaStatus() {
+function salvaStatus(id) {
   let elemento = $('.elemento:checked')[0]['id']
-  let equipamentoModal = $('.equipamento-modal')[0]['src']
+  let equipamentoModal
+  if (id == "submit-ataque") {
+    equipamentoModal = $('.ataque-modal')[0]['src']
+  } else {
+    equipamentoModal = $('.ataque-calc')[0]['src']
+  }
+
 
   let link = window.location.href
 
@@ -278,49 +289,53 @@ function salvaStatus() {
   }
   equipamentoModal = equipamentoModal.replace(link + 'img/equipamentos/', '')
   equipamentoModal = equipamentoModal.replace('.webp', '')
-
   if (equipamentoModal == 'elmo') {
     let peca = JSON.parse(localGet('elmo'))
     if (peca == null)
-      setStatus(elmo, elemento, equipamentoModal)
+      setStatus(elmo, elemento, equipamentoModal, id)
     else
-      setStatus(peca, elemento, equipamentoModal)
+      setStatus(peca, elemento, equipamentoModal, id)
   } else if (equipamentoModal == 'ombreira') {
     let peca = JSON.parse(localGet('ombreira'))
     if (peca == null)
-      setStatus(elmo, elemento, equipamentoModal)
+      setStatus(ombreira, elemento, equipamentoModal, id)
     else
-      setStatus(peca, elemento, equipamentoModal)
+      setStatus(peca, elemento, equipamentoModal, id)
   } else if (equipamentoModal == 'bracadeira') {
     let peca = JSON.parse(localGet('bracadeira'))
     if (peca == null)
-      setStatus(elmo, elemento, equipamentoModal)
+      setStatus(bracadeira, elemento, equipamentoModal, id)
     else
-      setStatus(peca, elemento, equipamentoModal)
+      setStatus(peca, elemento, equipamentoModal, id)
   } else if (equipamentoModal == 'cinto') {
     let peca = JSON.parse(localGet('cinto'))
     if (peca == null)
-      setStatus(elmo, elemento, equipamentoModal)
+      setStatus(cinto, elemento, equipamentoModal, id)
     else
-      setStatus(peca, elemento, equipamentoModal)
+      setStatus(peca, elemento, equipamentoModal, id)
   } else if (equipamentoModal == 'peitoral') {
     let peca = JSON.parse(localGet('peitoral'))
     if (peca == null)
-      setStatus(elmo, elemento, equipamentoModal)
+      setStatus(peitoral, elemento, equipamentoModal, id)
     else
-      setStatus(peca, elemento, equipamentoModal)
+      setStatus(peca, elemento, equipamentoModal, id)
   } else if (equipamentoModal == 'calca') {
     let peca = JSON.parse(localGet('calca'))
     if (peca == null)
-      setStatus(elmo, elemento, equipamentoModal)
+      setStatus(calca, elemento, equipamentoModal, id)
     else
-      setStatus(peca, elemento, equipamentoModal)
+      setStatus(peca, elemento, equipamentoModal, id)
   }
 }
 
-function setStatus(peca, elemento, equipamentoModal) {
-  peca[elemento] = Number($('.text-atk-e').val())
-  peca[getEAtk(elemento)] = Number($('.text-atk').val())
+function setStatus(peca, elemento, equipamentoModal, id) {
+  if (id == "submit-ataque") {
+    peca[elemento] = Number($('.text-atk-e').val())
+    peca[getEAtk(elemento)] = Number($('.text-atk').val())
+  } else {
+    peca[elemento] = Number($('.text-atk-e-calculadora').val())
+    peca[getEAtk(elemento)] = Number($('.text-atk-calculadora').val())
+  }
 
   if (peca[getEAtk(elemento)] > 1222) {
     alert("Ataque deve ser igual ou menor que 1222")
@@ -330,7 +345,10 @@ function setStatus(peca, elemento, equipamentoModal) {
     alert("A soma passou de 100% de eficiência!")
   } else {
     localSet(equipamentoModal, JSON.stringify(peca))
-    cancelarStatus()
+    if(id == "submit-ataque")
+      cancelarStatus()
+    else
+      cancelarCalculadoraAtaque()
     printaTela()
   }
 }
@@ -353,7 +371,7 @@ function editaCritico(id) {
     $('#crit').fadeToggle(200)
     id = id.replace('editar-', '')
     $('.crit-modal').attr('src', $('.' + id + ' .equip-img')[0]['src'])
-    $('.img-atk-e').attr('src', 'img/status/critico.png')
+    $('.img-atk-e').attr('src', 'img/status/critico.webp')
   }
 }
 
@@ -378,7 +396,7 @@ function salvarCrit(id) {
   }
 
   equipamentoModal = equipamentoModal.replace(link + 'img/equipamentos/', '')
-  equipamentoModal = equipamentoModal.replace('.png', '')
+  equipamentoModal = equipamentoModal.replace('.webp', '')
 
   if (equipamentoModal == 'bota') {
     let peca = JSON.parse(localGet('bota'))
@@ -437,7 +455,6 @@ function geraJSON() {
 }
 
 function lerJSON() {
-  debugger
   const [file] = document.querySelector('input[type=file]').files
   const reader = new FileReader()
   const itens = ['elmo', 'ombreira', 'bracadeira', 'cinto', 'peitoral', 'calca', 'bota', 'luva']
@@ -490,7 +507,7 @@ function getGrafico(listaAtaque, listaCritico) {
       }, 1000)
 
     } else if (i < 8) {
-      $(divPAi[i]).find('.item-grafico').attr('src', `img/equipamentos/${listaCritico[i - 6]['item']}.png`)
+      $(divPAi[i]).find('.item-grafico').attr('src', `img/equipamentos/${listaCritico[i - 6]['item']}.webp`)
 
       $(divPAi[i]).find('span').html(
         `${listaCritico[i - 6]['critico']} | 
@@ -503,10 +520,6 @@ function getGrafico(listaAtaque, listaCritico) {
   }
 }
 
-function teste() {
-  alert('botao')
-}
-
 function calculaCrit(id) {
   if ($('.elemento:checked')[0] == undefined)
     alert('Selecione um elemento')
@@ -514,7 +527,7 @@ function calculaCrit(id) {
     $('#calculadora-crit').fadeToggle(200)
     id = id.replace('calc-', '')
     $('.crit-calc').attr('src', $('.' + id + ' .equip-img')[0]['src'])
-    $('.img-atk-e').attr('src', 'img/status/critico.png')
+    $('.img-atk-e').attr('src', 'img/status/critico.webp')
   }
 }
 
@@ -529,14 +542,14 @@ function verificaCalculadoraCrit() {
   }
 
   equipamento = equipamento.replace(link + 'img/equipamentos/', '')
-  equipamento = equipamento.replace('.png', '')
+  equipamento = equipamento.replace('.webp', '')
 
   calculadoraResultado(equipamento, elemento)
 }
 
 function calculadoraResultado(equipamento, elemento) {
-  $('.itens-modal .calc-1').css('display', 'none')
-  $('.itens-modal .calc-2').css('display', 'flex')
+  $('.itens-modal .calc-crit-1').css('display', 'none')
+  $('.itens-modal .calc-crit-2').css('display', 'flex')
 
   let itemDropado = Number($('.text-crit-calc').val())
   let itemAtual = 0
@@ -547,19 +560,19 @@ function calculadoraResultado(equipamento, elemento) {
   }
 
   if (itemDropado > 0) {
-    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.png`)
+    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.webp`)
     $('.calculadora-valor').html(`+${itemDropado}`)
     $('.calculadora-valor').css('color', '#63c384')
     $('.calculadora-porcentagem').html(`+${((itemDropado * 100) / 6103).toFixed(2)}%`)
     $('.calculadora-porcentagem').css('color', '#63c384')
   } else if (itemDropado < 0) {
-    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.png`)
+    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.webp`)
     $('.calculadora-valor').html(`${itemDropado}`)
     $('.calculadora-valor').css('color', 'red')
     $('.calculadora-porcentagem').html(`${((itemDropado * 100) / 6103).toFixed(2)}%`)
     $('.calculadora-porcentagem').css('color', 'red')
   } else {
-    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.png`)
+    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.webp`)
     $('.calculadora-valor').html(`0`)
     $('.calculadora-porcentagem').html(`0`)
     $('.calculadora-valor').css('color', '#fff')
@@ -571,8 +584,8 @@ function cancelarCalculadoraCrit() {
   $('#calculadora-crit').fadeToggle(200)
   $('.text-crit-calc').val('')
   setTimeout(() => {
-    $('.itens-modal .calc-1').css('display', 'flex')
-    $('.itens-modal .calc-2').css('display', 'none')
+    $('.itens-modal .calc-crit-1').css('display', 'flex')
+    $('.itens-modal .calc-crit-2').css('display', 'none')
   }, 201)
 }
 
@@ -587,3 +600,115 @@ function calculaAtaque(id) {
     $('.img-atk-e').attr('src', 'img/status/' + elemento + '.webp')
   }
 }
+
+function verificaCalculadoraAtaque() {
+  let elemento = localGet('elemento')
+  let equipamento = $('.ataque-calc')[0]['src']
+
+  let link = window.location.href
+
+  if (link == 'http://127.0.0.1:3000/index.html') {
+    link = link.replace('index.html', '')
+  }
+
+  equipamento = equipamento.replace(link + 'img/equipamentos/', '')
+  equipamento = equipamento.replace('.webp', '')
+
+  calculadoraResultadoAtaque(equipamento, elemento)
+}
+
+function calculadoraResultadoAtaque(equipamento, elemento) {
+  $('.itens-modal .calc-ataque-1').css('display', 'none')
+  $('.itens-modal .calc-ataque-2').css('display', 'flex')
+  let atk = Number($('.text-atk-calculadora').val())
+  let atkE = Number($('.text-atk-e-calculadora').val())
+  let itemDropado = atk + atkE
+  let itemAtual = 0
+
+  if (JSON.parse(localGet(equipamento)) != null) {
+    itemAtual = zeraValor(JSON.parse(localGet(equipamento))[elemento])
+    itemAtual += zeraValor(JSON.parse(localGet(equipamento))[getEAtk(elemento)])
+    itemDropado -= itemAtual
+  }
+  
+
+  if (itemDropado > 0) {
+    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.webp`)
+    $('.calculadora-valor').html(`+${itemDropado}`)
+    $('.calculadora-valor').css('color', '#63c384')
+    $('.calculadora-porcentagem').html(`+${((itemDropado * 100) / 1681).toFixed(2)}%`)
+    $('.calculadora-porcentagem').css('color', '#63c384')
+  } else if (itemDropado < 0) {
+    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.webp`)
+    $('.calculadora-valor').html(`${itemDropado}`)
+    $('.calculadora-valor').css('color', 'red')
+    $('.calculadora-porcentagem').html(`${((itemDropado * 100) / 1681).toFixed(2)}%`)
+    $('.calculadora-porcentagem').css('color', 'red')
+  } else {
+    $('.resultadoCrit').attr('src', `img/equipamentos/${equipamento}.webp`)
+    $('.calculadora-valor').html(`0`)
+    $('.calculadora-porcentagem').html(`0`)
+    $('.calculadora-valor').css('color', '#fff')
+    $('.calculadora-porcentagem').css('color', '#fff')
+  }
+  
+}
+
+function cancelarCalculadoraAtaque() {
+  $('#calculadora-ataque').fadeToggle(200)
+  $('.text-atk-calculadora').val('')
+  $('.text-atk-e-calculadora').val('')
+  setTimeout(() => {
+    $('.itens-modal .calc-ataque-1').css('display', 'flex')
+    $('.itens-modal .calc-ataque-2').css('display', 'none')
+  }, 201)
+}
+
+
+let campoAtk = document.getElementById("campo-atk")
+campoAtk.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault()
+    $('#submit-ataque').click()
+  }
+})
+
+let campoAtkE = document.getElementById("campo-atk-e")
+campoAtkE.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault()
+    $('#submit-ataque').click()
+  }
+})
+
+let campoCrit = document.getElementById("campo-crit")
+campoCrit.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault()
+    $('#submit-crit').click()
+  }
+})
+
+let campoAtkCalc = document.getElementById("campo-atk-calc")
+campoAtkCalc.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault()
+    $('#submit-ataque-calc').click()
+  }
+})
+
+let campoAtkECalc = document.getElementById("campo-atk-e-calc")
+campoAtkECalc.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault()
+    $('#submit-ataque-calc').click()
+  }
+})
+
+let campoCritCalc = document.getElementById("campo-crit-calc")
+campoCritCalc.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault()
+    $('#submit-crit-calc').click()
+  }
+})
