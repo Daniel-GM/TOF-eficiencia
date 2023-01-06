@@ -16,4 +16,4 @@
 
 [+]criação de login
 
-[+]graficos de eficiencia
+[v]graficos de eficiencia
