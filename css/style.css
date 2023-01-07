@@ -423,6 +423,17 @@ input#ler-JSON {
   margin-left: auto;
 }
 
+th, td {
+  border: 2px solid;
+  text-align: center;
+}
+
+.grafico-legenda {
+  position: relative;
+  top: 20%;
+  right: 0px;
+}
+
 @media screen and (max-width: 800px){
   .eficiencia{
     border-bottom-left-radius: 50px;
