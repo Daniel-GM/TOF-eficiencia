@@ -350,6 +350,7 @@ function setStatus(peca, elemento, equipamentoModal, id) {
     else
       cancelarCalculadoraAtaque()
     printaTela()
+    getGrafico()
   }
 }
 
@@ -429,6 +430,7 @@ function setCrit(peca, elemento, id, equipamentoModal) {
     else
       cancelarCalculadoraCrit()
     printaTela()
+    getGrafico()
   }
 
 }
@@ -506,6 +508,15 @@ function getGrafico(listaAtaque, listaCritico) {
         width: `${listaAtaque[i]['porcentagem'].toFixed(2)}%`,
       }, 1000)
 
+      if (listaAtaque[i] != undefined){
+        if (listaAtaque[i]['porcentagem'] < 40 ) {
+          $(divPAi[i]).find('.barra-grafico').css('background-color', 'rgba(255,0,0')
+        } else if (listaAtaque[i]['porcentagem'] < 70 ) {
+          $(divPAi[i]).find('.barra-grafico').css('background-color', '#ffff32')
+        } else if (listaAtaque[i]['porcentagem'] <= 100 ) {
+          $(divPAi[i]).find('.barra-grafico').css('background-color', '#63c384')
+        }
+      }
     } else if (i < 8) {
       $(divPAi[i]).find('.item-grafico').attr('src', `img/equipamentos/${listaCritico[i - 6]['item']}.webp`)
 
@@ -516,6 +527,16 @@ function getGrafico(listaAtaque, listaCritico) {
       $(divPAi[i]).find('.barra-grafico').animate({
         width: `${listaCritico[i - 6]['porcentagem'].toFixed(2)}%`,
       }, 1000)
+
+      if (listaCritico[i-6] != undefined){
+        if (listaCritico[i-6]['porcentagem'] < 40 ) {
+          $(divPAi[i]).find('.barra-grafico').css('background-color', 'rgba(255,0,0')
+        } else if (listaCritico[i-6]['porcentagem'] < 70 ) {
+          $(divPAi[i]).find('.barra-grafico').css('background-color', '#ffff32')
+        } else if (listaCritico[i-6]['porcentagem'] <= 100 ) {
+          $(divPAi[i]).find('.barra-grafico').css('background-color', '#63c384')
+        }
+      }
     }
   }
 }
@@ -664,51 +685,3 @@ function cancelarCalculadoraAtaque() {
   }, 201)
 }
 
-
-let campoAtk = document.getElementById("campo-atk")
-campoAtk.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault()
-    $('#submit-ataque').click()
-  }
-})
-
-let campoAtkE = document.getElementById("campo-atk-e")
-campoAtkE.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault()
-    $('#submit-ataque').click()
-  }
-})
-
-let campoCrit = document.getElementById("campo-crit")
-campoCrit.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault()
-    $('#submit-crit').click()
-  }
-})
-
-let campoAtkCalc = document.getElementById("campo-atk-calc")
-campoAtkCalc.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault()
-    $('#submit-ataque-calc').click()
-  }
-})
-
-let campoAtkECalc = document.getElementById("campo-atk-e-calc")
-campoAtkECalc.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault()
-    $('#submit-ataque-calc').click()
-  }
-})
-
-let campoCritCalc = document.getElementById("campo-crit-calc")
-campoCritCalc.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault()
-    $('#submit-crit-calc').click()
-  }
-})
