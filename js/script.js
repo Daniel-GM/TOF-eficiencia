@@ -224,7 +224,7 @@ function calculoEficiencia(atkElemento, elemento, crit) {
     }
 
     if (i == 5) {
-      $(".total-ataque").html('Eficiência total dos equipamentos: ' + (((somaTotal) / 100) * maxAtk).toFixed(0))
+      $(".total-ataque").html('Eficiência total de Ataque: ' + (((somaTotal) / 100) * maxAtk).toFixed(0))
       $(".barra-total").css('background', `linear-gradient(to right, #63c384 0%, #63c384 ${(somaTotal / 6).toFixed(2)}%, #161616 ${(somaTotal / 6).toFixed(2)}%)`)
       $(".status-full .porcentagem").html((somaTotal / 6).toFixed(2) + '%')
     }

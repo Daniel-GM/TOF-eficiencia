@@ -543,3 +543,11 @@ span.porcentagem-grafico {
   display: none;
   width: 100%;
 }
+
+.ads {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 20%;
+  height: 20px;
+}

@@ -6,14 +6,14 @@
 
 [v]versão mobile
 
-[+]calculadora de itens
+[v]calculadora de itens
 
 [v]eficiencia de crit
 
 [v]backup dos dados
 
+[v]graficos de eficiencia
+
 [+]eficiencia do item bélico
 
 [+]criação de login
-
-[v]graficos de eficiencia
