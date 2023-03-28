@@ -11,7 +11,7 @@ Se você sempre quis saber o quão bom ou o quão ruim seus equipamentos no TOF 
 
 
 
-<h1 align="center"> # 📁 Acesso ao projeto </h1>
+📁 Acesso ao projeto
 
 https://daniel-gm.github.io/TOF-eficiencia/
 
@@ -24,7 +24,7 @@ https://daniel-gm.github.io/TOF-eficiencia/
 
 
 
-<h1 align="center"> # :hammer: Funcionalidades do projeto </h1>
+:hammer: Funcionalidades do projeto
 
 - Listar os itens em um gráfico do menor para o maior:
 
