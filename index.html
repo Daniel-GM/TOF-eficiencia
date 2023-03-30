@@ -10,7 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="img/icon/ruby.png" type="image/x-icon">
-  <title>TOF Eficiência - Alfa 2.1</title>
+  <title>TOF Eficiência 2.2.0</title>
 </head>
 
 <body>
@@ -31,6 +31,8 @@
         <label for="menu-atk"><img src="img/status/atk.webp" alt="" class="item-menu"></label>
         <input type="radio" name="menu" id="menu-crit" class="menu-item" />
         <label for="menu-crit"><img src="img/status/critico.webp" alt="" class="item-menu"></label>
+        <input type="radio" name="menu" id="menu-percent" class="menu-item" />
+        <label for="menu-percent"><img src="img/status/percent.png" alt="" class="item-menu"></label>
         <input type="radio" name="menu" id="menu-grafico" class="menu-item" />
         <label for="menu-grafico"><img src="img/icon/equalizer_white_36dp.svg" alt="" class="item-menu"></label>
         <input type="radio" name="menu" id="menu-calculadora" class="menu-item" />
@@ -368,6 +370,184 @@
       </div>
     </div>
   </section>
+
+  <!-- PERCENT -->
+  <div class="response-percent">
+    <section class="status-full status-full-atk-percent">
+      <div class="equips-full">
+        <div class="dados">
+          <div class="elmo">
+            <div class="status">
+              <span class="total-ataque-percent"></span>
+            </div>
+          </div>
+        </div>
+        <div class="barra barra-total barra-atk-total-percent">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="status-full status-full-atk-percent">
+      <div class="equips-full">
+        <div class="dados">
+          <div class="elmo">
+            <div class="status">
+              <span class="total-ataque-percent"></span>
+            </div>
+          </div>
+        </div>
+        <div class="barra barra-total barra-atk-total-percent">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="equips">
+      <div class="equipamento">
+        <div class="div-editar">
+          <input type="image" src="img/icon/edit_black_24dp.svg" class="editar" id="editar-belico"
+            onclick="editaEquipamento(this.id)"></input>
+        </div>
+        <div class="dados">
+          <div class="belico">
+            <img src="img/equipamentos/belico.webp" class="equip-img">
+            <div class="status">
+              <div class="ataque">
+                <img src="img/status/atk.webp" class="icon-ataque">
+                <span class="atk"></span>
+                <div class="eficiencia"></div>
+              </div>
+              <div class="e-ataque">
+                <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
+                <span class="e-atk"></span>
+              </div>
+              <div class="percent-ataque">
+                <img src="img/status/percent.svg" class="icon-percent-ataque">
+                <span class="e-atk"></span>
+              </div>
+              <div class="total">
+                <img src="img/icon/add_task_white_24dp.svg" class="icon-total">
+                <span class="total-belico"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="barra barra-belico">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
+      </div>
+
+      <div class="equipamento2">
+        <div class="div-editar">
+          <input type="image" src="img/icon/edit_black_24dp.svg" class="editar" id="editar-reator"
+            onclick="editaEquipamento(this.id)"></input>
+        </div>
+        <div class="dados">
+          <div class="reator">
+            <img src="img/equipamentos/reator.webp" class="equip-img">
+            <div class="status">
+              <div class="ataque">
+                <img src="img/status/atk.webp" class="icon-ataque">
+                <span class="atk"></span>
+                <div class="eficiencia"></div>
+              </div>
+              <div class="e-ataque">
+                <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
+                <span class="e-atk"></span>
+              </div>
+              <div class="percent-ataque">
+                <img src="img/status/percent.svg" class="icon-percent-ataque">
+                <span class="e-atk"></span>
+              </div>
+              <div class="total">
+                <img src="img/icon/add_task_white_24dp.svg" class="icon-total">
+                <span class="total-reator"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="barra barra-reator">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
+      </div>
+
+      <div class="equipamento">
+        <div class="div-editar">
+          <input type="image" src="img/icon/edit_black_24dp.svg" class="editar" id="editar-exoesqueleto"
+            onclick="editaEquipamento(this.id)"></input>
+        </div>
+        <div class="dados">
+          <div class="exoesqueleto">
+            <img src="img/equipamentos/exoesqueleto.webp" class="equip-img">
+            <div class="status">
+              <div class="ataque">
+                <img src="img/status/atk.webp" class="icon-ataque">
+                <span class="atk"></span>
+                <div class="eficiencia"></div>
+              </div>
+              <div class="e-ataque">
+                <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
+                <span class="e-atk"></span>
+              </div>
+              <div class="percent-ataque">
+                <img src="img/status/percent.svg" class="icon-percent-ataque">
+                <span class="e-atk"></span>
+              </div>
+              <div class="total">
+                <img src="img/icon/add_task_white_24dp.svg" class="icon-total">
+                <span class="total-exoesqueleto"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="barra barra-exoesqueleto">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
+      </div>
+
+      <div class="equipamento2">
+        <div class="div-editar">
+          <input type="image" src="img/icon/edit_black_24dp.svg" class="editar" id="editar-oculos"
+            onclick="editaEquipamento(this.id)"></input>
+        </div>
+        <div class="dados">
+          <div class="oculos">
+            <img src="img/equipamentos/oculos.webp" class="equip-img">
+            <div class="status">
+              <div class="ataque">
+                <img src="img/status/atk.webp" class="icon-ataque">
+                <span class="atk"></span>
+                <div class="eficiencia"></div>
+              </div>
+              <div class="e-ataque">
+                <img src="img/status/ThunderAtk.webp" class="icon-e-ataque">
+                <span class="e-atk"></span>
+              </div>
+              <div class="percent-ataque">
+                <img src="img/status/percent.svg" class="icon-percent-ataque">
+                <span class="e-atk"></span>
+              </div>
+              <div class="total">
+                <img src="img/icon/add_task_white_24dp.svg" class="icon-total">
+                <span class="total-oculos"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="barra barra-oculos">
+          <div class="eficiencia"></div>
+          <div class="porcentagem"></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
 
   <!-- JSON -->
   <div class="response-JSON">

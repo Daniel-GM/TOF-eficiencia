@@ -70,6 +70,59 @@ let luva = {
   'FireCrit': 0,
   'PhyCrit': 0
 }
+let belico = {
+  'AtkThunder': 0,
+  'AtkIce': 0,
+  'AtkFire': 0,
+  'AtkPhy': 0,
+  'ThunderAtk': 0,
+  'IceAtk': 0,
+  'FireAtk': 0,
+  'PhyAtk': 0,
+  'percentThunder': 0,
+  'percentIce': 0,
+  'percentFire': 0,
+  'percentPhy': 0,
+}
+let reator = {
+  'AtkThunder': 0,
+  'AtkIce': 0,
+  'AtkFire': 0,
+  'AtkPhy': 0,
+  'ThunderAtk': 0,
+  'IceAtk': 0,
+  'FireAtk': 0,
+  'PhyAtk': 0,
+  'percentThunder': 0,
+  'percentIce': 0,
+  'percentFire': 0,
+  'percentPhy': 0,
+}
+let exoesqueleto = {
+  'AtkThunder': 0,
+  'AtkIce': 0,
+  'AtkFire': 0,
+  'AtkPhy': 0,
+  'ThunderAtk': 0,
+  'IceAtk': 0,
+  'FireAtk': 0,
+  'PhyAtk': 0,
+  'percentThunder': 0,
+  'percentIce': 0,
+  'percentFire': 0,
+  'percentPhy': 0,
+}
+let oculos = {
+  'ThunderCrit': 0,
+  'IceCrit': 0,
+  'FireCrit': 0,
+  'PhyCrit': 0,
+  'percentThunder': 0,
+  'percentIce': 0,
+  'percentFire': 0,
+  'percentPhy': 0,
+}
+
 
 $(`input[id=${localGet('menu-item')}]`).attr('checked', 'checked')
 $(`input[id=${localGet('elemento')}]`).attr('checked', 'checked')
@@ -80,6 +133,7 @@ if (localGet('menu-item') != null && localGet('elemento') != null)
 function displayNone() {
   $('.response').css('display', 'none')
   $('.response-critico').css('display', 'none')
+  $('.response-percent').css('display', 'none')
   $('.response-JSON').css('display', 'none')
   $('.response-grafico').css('display', 'none')
   $('.response-calculadora').css('display', 'none')
@@ -98,6 +152,8 @@ function printaTela() {
     $('.response').css('display', 'block')
   } else if (menu == 'menu-crit') {
     $('.response-critico').css('display', 'block')
+  } else if (menu == 'menu-percent') {
+    $('.response-percent').css('display', 'block')
   } else if (menu == 'menu-JSON') {
     $('.response-JSON').css('display', 'block')
   } else if (menu == 'menu-grafico') {
@@ -234,6 +290,12 @@ function calculoEficiencia(atkElemento, elemento, crit) {
       $(".status-full-crit .porcentagem").html((critTotal / 2).toFixed(2) + '%')
       getGrafico(listaAtaque, listaCritico)
     }
+    if (i == 11) {
+      $(".total-ataque-percent").html('Eficiência total de Ataque: ' + (((somaTotal) / 100) * maxAtk).toFixed(0))
+      $(".barra-atk-total-percent").css('background', `linear-gradient(to right, #63c384 0%, #63c384 ${(critTotal / 2).toFixed(2)}%, #161616 ${(critTotal / 2).toFixed(2)}%)`)
+      $(".status-full-atk-percent .porcentagem").html((critTotal / 2).toFixed(2) + '%')
+      
+    }
   }
 }
 
@@ -284,7 +346,7 @@ function salvaStatus(id) {
 
   let link = window.location.href
 
-  if (link == 'http://127.0.0.1:3000/index.html') {
+  if (link == 'http://127.0.0.1:5500/index.html') {
     link = link.replace('index.html', '')
   }
   equipamentoModal = equipamentoModal.replace(link + 'img/equipamentos/', '')
