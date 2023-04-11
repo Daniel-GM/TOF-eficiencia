@@ -113,14 +113,22 @@ let exoesqueleto = {
   'percentPhy': 0,
 }
 let oculos = {
-  'ThunderCrit': 0,
-  'IceCrit': 0,
-  'FireCrit': 0,
-  'PhyCrit': 0,
+  'AtkThunder': 0,
+  'AtkIce': 0,
+  'AtkFire': 0,
+  'AtkPhy': 0,
+  'ThunderAtk': 0,
+  'IceAtk': 0,
+  'FireAtk': 0,
+  'PhyAtk': 0,
   'percentThunder': 0,
   'percentIce': 0,
   'percentFire': 0,
   'percentPhy': 0,
+  'percentThunderCrit': 0,
+  'percentIceCrit': 0,
+  'percentFireCrit': 0,
+  'percentPhyCrit': 0,
 }
 
 
@@ -497,6 +505,19 @@ function setCrit(peca, elemento, id, equipamentoModal) {
 
 }
 
+function editaEquipamentoPercent(id) {
+  if ($('.elemento:checked')[0] == undefined)
+    alert('Selecione um elemento')
+  else {
+    debugger
+    $('#percent').fadeToggle(200)
+    let elemento = $('.elemento:checked')[0]['id']
+    id = id.replace('editar-', '')
+    $('.equipamento-modal').attr('src', $('.' + id + ' .equip-img')[0]['src'])
+    $('.img-atk-e').attr('src', 'img/status/' + elemento + '.webp')
+  }
+}
+
 function geraJSON() {
   let arrayJSON = [
     localGet('elmo'),
@@ -746,6 +767,8 @@ function cancelarCalculadoraAtaque() {
     $('.itens-modal .calc-ataque-2').css('display', 'none')
   }, 201)
 }
+
+/* shortcut */
 
 let campoAtk = document.getElementById("campo-atk")
 campoAtk.addEventListener("keypress", function(event) {

@@ -1,3 +1,7 @@
+/* input#menu-percent, input#menu-percent + label {
+  display: none;
+} */
+
 /* body */
 html, body{
   padding: 0px;
@@ -297,6 +301,7 @@ div.barra-total{
 /* modal */
 #fade,
 #crit,
+#percent,
 #calculadora-crit,
 #calculadora-ataque {
   transition: 0,5s;
@@ -564,6 +569,12 @@ span.porcentagem-grafico {
   flex-direction: column;
   align-items: center;
   display: none;
+  width: 100%;
+}
+
+.elemento-percent {
+  display: flex;
+  justify-content: center;
   width: 100%;
 }
 
