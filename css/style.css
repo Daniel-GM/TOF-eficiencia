@@ -585,3 +585,8 @@ span.porcentagem-grafico {
   width: 20%;
   height: 20px;
 }
+
+img.img-percent {
+  width: 15%;
+  padding: 4px 0px;
+}

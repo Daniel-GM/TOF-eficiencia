@@ -509,7 +509,6 @@ function editaEquipamentoPercent(id) {
   if ($('.elemento:checked')[0] == undefined)
     alert('Selecione um elemento')
   else {
-    debugger
     $('#percent').fadeToggle(200)
     let elemento = $('.elemento:checked')[0]['id']
     id = id.replace('editar-', '')
